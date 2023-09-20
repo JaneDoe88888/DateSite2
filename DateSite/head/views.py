@@ -16,6 +16,7 @@ def home(request):
     return render(request, 'home.html', {'form': form, 'confirm_login': confirm_login})
 
 def profile(request):
+    print('hello!')
     return render(request, 'profile.html', {})
 
 def news(request):
