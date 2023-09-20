@@ -1,5 +1,115 @@
 {% extends 'base_layout.html' %}
+{% load static %}
+
 
 {% block content %}
-    <div class="title has-text-centered">CHAT</div>
+    <div class="columns">
+        <div class="column is-2">
+            <div class="wrapper">
+                <div class="sidebar">
+                    <div class="profile has-text-centered">
+                        <img src="{% static 'static/logo.png' %}" style="width: 70%">
+                        <img id="avatar" style="margin-top: 1px"
+                             src="https://cdn1.flamp.ru/f095db715d8ab92aed99398c0d3d3892.png"
+                             alt="profile_picture">
+                        <div class="title" style="color: lightgoldenrodyellow;">Admin Admin</div>
+                        <div class="subtitle" style="color: lightgoldenrodyellow">Designer</div>
+                    </div>
+                    <ul>
+                        <li>
+                            <a href="{% url 'head:search' %}">
+                                <ion-icon name="search-outline"></ion-icon>
+                                <span class="item">Поиск знакомств</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'head:profile' %}">
+                                <ion-icon name="person-outline"></ion-icon>
+                                <span class="item">Мой профиль</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'head:news' %}">
+                                <ion-icon name="newspaper-outline"></ion-icon>
+                                <span class="item">Новости</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'head:chat' %}">
+                                <ion-icon name="mail-open-outline"></ion-icon>
+                                <span class="item">Сообщения</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'head:friends' %}">
+                                <ion-icon name="people-outline"></ion-icon>
+                                <span class="item">Друзья</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'head:favorite' %}">
+                                <ion-icon name="heart-outline"></ion-icon>
+                                <span class="item">Избранные</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'head:photo' %}">
+                                <ion-icon name="images-outline"></ion-icon>
+                                <span class="item">Фотографии</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'head:settings' %}">
+                                <ion-icon name="settings-outline"></ion-icon>
+                                <span class="item">Настройки</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <button class="button is-danger" style="position: absolute; bottom: 5px; left: 5px">
+                        <a href="{% url 'head:sign_out' %}" style="color: white">Выйти</a>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="column pt-3 mr-5">
+            <div class="columns is-vcentered is-multiline" style="margin-bottom: 0; padding-bottom: 1px">
+                <div class="column is-6">
+                    <form>
+                        <div class="field has-addons">
+                            <div class="control" style="width: 100%">
+                                <input type="text" class="input" name="search" placeholder="найти друга">
+                            </div>
+                            <div class="control">
+                                <button class="button" style="color: white; background-color: lightsalmon">
+                                    <ion-icon name="search-outline"></ion-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="column">
+                    <div class="subtitle has-text-right"
+                         style="color: orangered; font-family: 'Academy Engraved LET'; font-size: 50px; margin: 1px; margin-top: 5px; padding: 5px; bottom: 1px">
+                        CLICKDATE
+                    </div>
+                </div>
+            </div>
+            <div class="box has-background-warning-light">
+
+
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
 {% endblock %}
+
+
+
+
+
+
