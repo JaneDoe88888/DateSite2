@@ -16,7 +16,11 @@ def home(request):
         return redirect('head:profile', pk=user.pk)
     return render(request, 'home.html', {'form': form, 'confirm_login': confirm_login})
 
-
+  
+def profile(request, pk):
+    user_pk = User.objects.get(pk=pk)
+    account = UserProfile.objects.get(user=user_pk)
+    return render(request, 'profile.html', {'account': account})
 
 
 

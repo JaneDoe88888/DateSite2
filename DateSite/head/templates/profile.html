@@ -10,7 +10,7 @@
                     <div class="profile has-text-centered">
                         <img src="{% static 'static/logo.png' %}" style="width: 70%">
                         <img id="avatar" style="margin-top: 1px"
-                             src="https://cdn1.flamp.ru/f095db715d8ab92aed99398c0d3d3892.png"
+                             src="{{ account.image.url }}"
                              alt="profile_picture">
                         <div class="title" style="color: lightgoldenrodyellow;">{{ user.username }}</div>
                         <div class="subtitle" style="color: lightgoldenrodyellow">Designer</div>
@@ -23,7 +23,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="{% url 'head:profile' %}">
+                            <a href="{% url 'head:profile' account.pk %}">
                                 <ion-icon name="person-outline"></ion-icon>
                                 <span class="item">Мой профиль</span>
                             </a>
@@ -99,7 +99,7 @@
                 <div class="columns is-vcentered is-multiline">
                     <div class="column is-5">
                         <div class="box" style="box-shadow: 0 0 5px 5px lightpink">
-                            <img src="{% static 'static/avatar.png' %}" alt="">
+                            <img src="{{ account.image.url }}" alt="">
                             <button class="button is-danger is-fullwidth">
                                 <a href="" style="color: white">Изменить фотографию</a>
                                 <ion-icon name="camera-outline"></ion-icon>

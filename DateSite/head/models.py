@@ -22,6 +22,13 @@ GENDER_CHOICE = [
 #     password = models.CharField(max_length=255)
 #     gender = models.CharField(max_length=255, choices=GENDER_CHOICE)
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    image = models.ImageField(default='default-profile-photo.png', blank=True)
+
+    def __str__(self):
+        return self.user.username
+
 
 class Profile(models.Model):
     first_name = models.CharField(max_length=255)
