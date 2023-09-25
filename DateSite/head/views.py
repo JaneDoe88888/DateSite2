@@ -12,7 +12,7 @@ def home(request):
     if form.is_valid():
         user = form.get_user()
         login(request, user)
-        return redirect('head:profile')
+        return redirect('head:profile', pk=user.pk)
     return render(request, 'home.html', {'form': form, 'confirm_login': confirm_login})
 
 def profile(request):
