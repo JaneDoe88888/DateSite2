@@ -110,3 +110,9 @@ nav img {
     height: 80px;
     width: 80px;
 }
+
+.scroll {
+    height: 100px;
+    overflow-y: scroll;
+
+}
