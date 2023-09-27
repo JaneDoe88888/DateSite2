@@ -27,9 +27,11 @@ def profile(request, pk):
     confirm_photo = False
     if action == 'photo':
         confirm_photo = True
-    if form.is_valid():
-        form.save()
-        return redirect('head:profile', pk=pk)
+        if form.is_valid():
+            form.save()
+            return redirect('head:profile', pk=pk)
+    if action == 'delete':
+        account.image = 'default-profile-photo.png'
     return render(request, 'profile.html', {'account': account, 'form': form, 
                                             'confirm_photo': confirm_photo})
 
