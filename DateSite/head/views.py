@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth import login, logout
-from .forms import SignInForm
+from .forms import *
 
 
 def home(request):
@@ -20,7 +20,18 @@ def home(request):
 def profile(request, pk):
     user_pk = User.objects.get(pk=pk)
     account = UserProfile.objects.get(user=user_pk)
-    return render(request, 'profile.html', {'account': account})
+    form = PhotoProfile(request.POST or None,
+                        request.FILES or None,
+                        instance=account)
+    action = request.GET.get('action')
+    confirm_photo = False
+    if action == 'photo':
+        confirm_photo = True
+    if form.is_valid():
+        form.save()
+        return redirect('head:profile', pk=pk)
+    return render(request, 'profile.html', {'account': account, 'form': form, 
+                                            'confirm_photo': confirm_photo})
 
 
 def news(request):

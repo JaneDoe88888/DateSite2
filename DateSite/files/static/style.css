@@ -110,3 +110,11 @@ nav img {
     height: 80px;
     width: 80px;
 }
+.profile-image {
+    height: 50vh;
+    width: 29vw;
+}
+.profile-image img {
+    width: 100%;
+    height: 100%;
+}
