@@ -32,6 +32,7 @@ def favorite(request):
     return render(request, 'favorite.html')
 
 def photo(request):
+
     return render(request, 'photo.html')
 
 def settings(request):
