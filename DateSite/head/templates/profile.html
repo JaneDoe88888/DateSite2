@@ -102,12 +102,12 @@
                             <img src="{{ account.image.url }}" alt="">
                         </figure>
 
-                        <a href="{% url 'head:profile' account.pk %}?action=photo" style="color: white"
+                        <a href="{% url 'head:profile' account.pk %}?action=photo" style="color: white;" 
                             class="button is-danger is-fullwidth">
                             <div class="">Изменить фотографию</div>
-                            <div><ion-icon name="camera-outline"></ion-icon></div>
+                            <ion-icon name="camera-outline"></ion-icon>
                         </a>
-                        <a href="{% url 'head:profile' account.pk %}?action=delete" style="color: white"
+                        <a href="{% url 'head:profile' account.pk %}?action=delete" style="color: white;"
                             class="button is-primary is-fullwidth">
                             <div class="">Удалить фотографию</div>
                         </a>

@@ -24,6 +24,7 @@ def profile(request, pk):
                         request.FILES or None,
                         instance=account)
     action = request.GET.get('action')
+    # act_ph = request.GET.get('act_ph')
     confirm_photo = False
     if action == 'photo':
         confirm_photo = True
@@ -32,6 +33,7 @@ def profile(request, pk):
             return redirect('head:profile', pk=pk)
     if action == 'delete':
         account.image = 'default-profile-photo.png'
+        account.save()
     return render(request, 'profile.html', {'account': account, 'form': form, 
                                             'confirm_photo': confirm_photo})
 
