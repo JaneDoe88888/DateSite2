@@ -12,7 +12,7 @@
                         <img id="avatar" style="margin-top: 1px"
                              src="https://cdn1.flamp.ru/f095db715d8ab92aed99398c0d3d3892.png"
                              alt="profile_picture">
-                        <div class="title" style="color: lightgoldenrodyellow;">Admin Admin</div>
+                        <div class="title" style="color: lightgoldenrodyellow;">{{ user.username }}</div>
                         <div class="subtitle" style="color: lightgoldenrodyellow">Designer</div>
                     </div>
                     <ul>
@@ -97,18 +97,29 @@
             <div class="box has-background-warning-light">
                 <div class="has-text-centered title">Настройки</div>
 
-                <h1 class="subtitle" style="color: #0a0a0a">Уведомления на сайте</h1>
-                <hr>
-                 <td>показывать мгновенные уведомления </td>
-                <hr>
-                 <td>показывать текст сообщения</td>
-                <hr>
-                 <h1 class="subtitle" style="color: #0a0a0a">Сообщения</h1>
-                <hr>
-                 <td>личные сообщения</td>
-                <hr>
-                 <td>напоминание о сообщениях</td>
-                <hr>
+                <div class="box">
+                    <h1 class="subtitle" style="color: #0a0a0a">Уведомления на сайте</h1>
+                    <hr>
+                     <td>показывать мгновенные уведомления </td>
+                    <hr>
+                    <td>показывать текст сообщения</td>
+                </div>
+                 <div class="box">
+
+                    <h1 class="subtitle" style="color: #0a0a0a">Сообщения</h1>
+                    <hr>
+                     <ul>
+                       <td>личные сообщения</td>
+                     </ul>
+                        <div class="is-centered">
+                            <ion-icon class="icon is-centered"   name="toggle"></ion-icon>
+                        </div>
+
+                    <hr>
+                     <td>напоминание о сообщениях</td>
+
+                 </div>
+
 <!--                <h1 class="subtitle" style="color: #0a0a0a">Сообщения</h1>-->
 
 
