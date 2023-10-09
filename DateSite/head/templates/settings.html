@@ -3,156 +3,201 @@
 
 
 {% block content %}
-    <div class="columns">
-        <div class="column is-2">
-            <div class="wrapper">
-                <div class="sidebar">
-                    <div class="profile has-text-centered">
-                        <img src="{% static 'static/logo.png' %}" style="width: 70%">
-                        <img id="avatar" style="margin-top: 1px"
-                             src="https://cdn1.flamp.ru/f095db715d8ab92aed99398c0d3d3892.png"
-                             alt="profile_picture">
-                        <div class="title" style="color: lightgoldenrodyellow;">{{ user.username }}</div>
-                        <div class="subtitle" style="color: lightgoldenrodyellow">Designer</div>
-                    </div>
-                    <ul>
-                        <li>
-                            <a href="{% url 'head:search' %}">
-                                <ion-icon name="search-outline"></ion-icon>
-                                <span class="item">Поиск знакомств</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'head:profile' %}">
-                                <ion-icon name="person-outline"></ion-icon>
-                                <span class="item">Мой профиль</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'head:news' %}">
-                                <ion-icon name="newspaper-outline"></ion-icon>
-                                <span class="item">Новости</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'head:chat' %}">
-                                <ion-icon name="mail-open-outline"></ion-icon>
-                                <span class="item">Сообщения</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'head:friends' %}">
-                                <ion-icon name="people-outline"></ion-icon>
-                                <span class="item">Друзья</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'head:favorite' %}">
-                                <ion-icon name="heart-outline"></ion-icon>
-                                <span class="item">Избранные</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'head:photo' %}">
-                                <ion-icon name="images-outline"></ion-icon>
-                                <span class="item">Фотографии</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'head:settings' %}">
-                                <ion-icon name="settings-outline"></ion-icon>
-                                <span class="item">Настройки</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <button class="button is-danger" style="position: absolute; bottom: 5px; left: 5px">
-                        <a href="{% url 'head:sign_out' %}" style="color: white">Выйти</a>
-                    </button>
+<div class="columns">
+    <div class="column is-2">
+        <div class="wrapper">
+            <div class="sidebar">
+                <div class="profile has-text-centered">
+                    <img src="{% static 'static/logo.png' %}" style="width: 70%">
+                    <img id="avatar" style="margin-top: 1px"
+                         src="https://cdn1.flamp.ru/f095db715d8ab92aed99398c0d3d3892.png"
+                         alt="profile_picture">
+                    <div class="title" style="color: lightgoldenrodyellow;">{{ user.username }}</div>
+                    <div class="subtitle" style="color: lightgoldenrodyellow">Designer</div>
                 </div>
-            </div>
-        </div>
-        <div class="column pt-3 mr-5">
-            <div class="columns is-vcentered is-multiline" style="margin-bottom: 0; padding-bottom: 1px">
-                <div class="column is-6">
-                    <form>
-                        <div class="field has-addons">
-                            <div class="control" style="width: 100%">
-                                <input type="text" class="input" name="search" placeholder="найти друга">
-                            </div>
-                            <div class="control">
-                                <button class="button" style="color: white; background-color: lightsalmon">
-                                    <ion-icon name="search-outline"></ion-icon>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="column">
-                    <div class="subtitle has-text-right"
-                         style="color: orangered; font-family: 'Academy Engraved LET'; font-size: 50px; margin: 1px; margin-top: 5px; padding: 5px; bottom: 1px">
-                        CLICKDATE
-                    </div>
-                </div>
-            </div>
-            <div class="box has-background-warning-light">
-                <div class="has-text-centered title">Настройки</div>
-
-                <div class="box" style="margin: 5%">
-                    <h1 class="subtitle" style="color: #0a0a0a">Уведомления на сайте</h1>
-                    <hr>
-                   <ul>
-                        <li>лайки
-                        <input class="checkbox" type="checkbox"></li>
-                        <hr>
-                        <li>дизлайки
-                        <input class="checkbox" type="checkbox"></li>
-                   </ul>
-                </div>
-                 <div class="box" style="margin: 5%">
-                     <h1 class="subtitle" style="color: #0a0a0a">Сообщения</h1>
-                     <hr>
-                     <ul>
-                         <li>личные сообщения
-                         <input class="checkbox" type="checkbox"></li>
-                         <hr>
-                         <li>напоминание о сообщениях
-                         <input class="checkbox" type="checkbox"></li>
-                     </ul>
-                 </div>
-                <div class="box" style="margin: 5%">
-                     <h1 class="subtitle" style="color: #0a0a0a">События</h1>
-                     <hr>
-                     <ul >
-                         <li>заявка в друзья
-                         <input  class="checkbox" type="checkbox"></li>
-                         <hr>
-                         <li>возможные друзья
-                         <input class="checkbox" type="checkbox"></li>
-                         <hr>
-                         <li>подписчики
-                         <input class="checkbox" type="checkbox"></li>
-                         <hr>
-                         <li>отметки на фотографии
-                         <input class="checkbox" type="checkbox"></li>
-                         <hr>
-                         <li>
-                             интересные публикации
-                             <input class="is-right" type="checkbox">
-                         </li>
-
-                     </ul>
-                 </div>
-
+                <ul>
+                    <li>
+                        <a href="{% url 'head:search' %}">
+                            <ion-icon name="search-outline"></ion-icon>
+                            <span class="item">Поиск знакомств</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'head:profile' %}">
+                            <ion-icon name="person-outline"></ion-icon>
+                            <span class="item">Мой профиль</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'head:news' %}">
+                            <ion-icon name="newspaper-outline"></ion-icon>
+                            <span class="item">Новости</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'head:chat' %}">
+                            <ion-icon name="mail-open-outline"></ion-icon>
+                            <span class="item">Сообщения</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'head:friends' %}">
+                            <ion-icon name="people-outline"></ion-icon>
+                            <span class="item">Друзья</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'head:favorite' %}">
+                            <ion-icon name="heart-outline"></ion-icon>
+                            <span class="item">Избранные</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'head:photo' %}">
+                            <ion-icon name="images-outline"></ion-icon>
+                            <span class="item">Фотографии</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'head:settings' %}">
+                            <ion-icon name="settings-outline"></ion-icon>
+                            <span class="item">Настройки</span>
+                        </a>
+                    </li>
+                </ul>
+                <button class="button is-danger" style="position: absolute; bottom: 5px; left: 5px">
+                    <a href="{% url 'head:sign_out' %}" style="color: white">Выйти</a>
+                </button>
             </div>
         </div>
     </div>
+    <div class="column pt-3 mr-5">
+        <div class="columns is-vcentered is-multiline" style="margin-bottom: 0; padding-bottom: 1px">
+            <div class="column is-6">
+                <form>
+                    <div class="field has-addons">
+                        <div class="control" style="width: 100%">
+                            <input type="text" class="input" name="search" placeholder="найти друга">
+                        </div>
+                        <div class="control">
+                            <button class="button" style="color: white; background-color: lightsalmon">
+                                <ion-icon name="search-outline"></ion-icon>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="column">
+                <div class="subtitle has-text-right"
+                     style="color: orangered; font-family: 'Academy Engraved LET'; font-size: 50px; margin: 1px; margin-top: 5px; padding: 5px; bottom: 1px">
+                    CLICKDATE
+                </div>
+            </div>
+        </div>
+
+
+         <div class="box has-background-warning-light" style="width: 80%;height: 87vh; overflow: scroll">
+                <div class="has-text-centered title ">Настройки</div>
+        <div class="columns has-background-warning-light">
+
+
+
+                <div class="column has-background-warning-light " >
+                    <div class="box" style="margin-top: 5%; margin-left: 5%; width: 70%">
+                        <h1 class="title " style="color: #0a0a0a">Уведомления на сайте</h1>
+                        <hr>
+                        <ul>
+                            <li class="is-flex is-justify-content-space-between" style="color: #0a0a0a">
+                                лайки
+                                <input class="checkbox" type="checkbox">
+                            </li>
+                            <sub>Покажем публикации, которые могут вас заинтересовать</sub>
+
+                            <hr>
+
+                            <li class="is-flex is-justify-content-space-between" style="color: #0a0a0a">
+                                дизлайки
+                                <input class="checkbox" type="checkbox">
+                            </li>
+                            <sub>Покажем публикации, которые могут вас заинтересовать</sub>
+                        </ul>
+                    </div>
+                </div>
+                <div class="column has-background-warning-light " >
+                    <div class="box" style="margin-top: 5%; margin-left: 5%; width: 70%">
+                    <h1 class="title" style="color: #0a0a0a">Сообщения</h1>
+                    <hr>
+                    <ul>
+                        <li class="is-flex is-justify-content-space-between" style="color: #0a0a0a">
+                            личные сообщения
+                            <input class="checkbox" type="checkbox">
+                        </li>
+                        <sub>Уведомление о том, что вас упомянули в чате</sub>
+                        <hr>
+
+                        <li class="is-flex is-justify-content-space-between" style="color: #0a0a0a">
+                            напоминание о сообщениях
+                            <input class="checkbox" type="checkbox">
+                        </li>
+                        <sub>Уведомление о том, что у вас есть непрочитанные сообщения или упоминания в чатах</sub>
+                    </ul>
+                </div>
+                </div>
+                <div class="column has-background-warning-light "   >
+                    <div class="box" style="margin-top: 5%; margin-left: 5%; width: 70%">
+                    <h1 class="title " style="color: #0a0a0a">События</h1>
+                    <hr>
+                    <ul>
+                        <li class="is-flex is-justify-content-space-between" style="color: #0a0a0a">
+                            заявка в друзья
+                            <input class="checkbox" type="checkbox">
+                        </li>
+                        <sub>Вы получили заявку в друзья, вашу заявку приняли или вам рекомендуют друга</sub>
+                        <hr>
+
+                        <li class="is-flex is-justify-content-space-between" style="color: #0a0a0a">
+                            возможные друзья
+                            <input class="checkbox" type="checkbox">
+                        </li>
+                        <sub>Ваш возможный друг зарегистрировался ВКонтакте</sub>
+                        <hr>
+
+                        <li class="is-flex is-justify-content-space-between" style="color: #0a0a0a">
+                            подписчики
+                            <input class="checkbox" type="checkbox">
+                        </li>
+                        <sub>Уведомление о новых подписчиках</sub>
+                        <hr>
+
+                        <li class="is-flex is-justify-content-space-between" style="color: #0a0a0a">
+                            отметки на фотографиях
+                            <input class="checkbox" type="checkbox">
+                        </li>
+                        <sub>Уведомление о том, что вас отметили на фотографии</sub>
+                        <hr>
+
+                        <li class="is-flex is-justify-content-space-between" style="color: #0a0a0a">
+                            интересные публикации
+                            <input class="is-right" type="checkbox">
+                        </li>
+                        <sub>Покажем публикации, которые могут вас заинтересовать</sub>
+
+                    </ul>
+                </div>
+                </div>
+            </div>
+            <div class="column has-text-right">
+                <div class="" style="margin-top: 40px; padding: 5px;">
+                    <a href="" class="button is-danger is-large">Сохранить настройки
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 
 
 {% endblock %}
 
 
-
-
-
-
-l
