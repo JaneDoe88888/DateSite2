@@ -6,6 +6,7 @@ urlpatterns = [
     path('profile/<pk>', views.profile, name='profile'),
     path('edit_photo', views.edit_photo, name='edit_photo'),
     path('edit_about', views.edit_about, name='edit_about'),
+    path('edit_profile', views.edit_profile, name='edit_profile'),
     path('sign_out', views.sign_out, name='sign_out'),
     path('news/', views.news, name='news'),
     path('chat/', views.chat, name='chat'),

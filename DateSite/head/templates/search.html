@@ -3,9 +3,92 @@
 
 
 {% block content %}
-    
+    <div class="box has-background-warning-light" style="height: 88vh; overflow: scroll">
+        <div class="title has-text-centered" style="font-family: 'Comic Sans MS'">Найди своего человека</div>
+        <div class="box" style="width: 80vh; text-align: center">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <button type="submit" value="Поиск" style="color: white; background-color: lightsalmon">Поиск</button>
+            </form>
+        </div>
+    </div>
+    <div class="box has-background-warning-light" style="height: 88vh; overflow: scroll">
+        <div class="columns is-vcentered is-multiline">
+            <div class="column">
+                <div class="title has-text-centered" style="font-family: 'Comic Sans MS'; margin-top: 10px">Результат</div>
+                <style>
+                    .grid-container {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                        grid-gap: 5px;
+                    }
 
+                    .user-card {
+                        background-color: lightsalmon;
+                        margin: 20px;
+                        border-radius: 5px;
+                        box-shadow: 2px 2px 2px 3px rgba(0, 0, 0, 0.1);
+                        height: 400px;
+                    }
+
+                    .user-card h3 {
+                        margin-top: 0;
+                    }
+
+                    .box {
+                        padding: 3px;
+                        margin-right: 5px;
+                        margin-left: 5px;
+                    }
+
+                    img {
+                        border-radius: 5px;
+                    }
+                    .buttons   {
+                        margin-left: 10px;
+                        padding: 3px;
+                    }
+                    .button  {
+                        padding-bottom: 3px;
+                    }
+
+                </style>
+                <div class="grid-container">
+                    {% for foundling in users %}
+                    <div class="user-card">
+                        <h3 class="subtitle has-text-centered" style="color: black">{{foundling.username}}</h3>
+                        <div class="box ">
+                            <figure class="image is-128x128">
+                                <img class="placeholder" src="{{ foundling.image.url }}">
+                            </figure>
+                        </div>
+
+                        <p class="has-text-centered" style="color: black">Lorem ipsum dolor sit amet.</p>
+                        <br>
+
+                        <div class="buttons">
+                            <div class="button is-small is-danger" id="1">
+                                <ion-icon name="mail-open-outline"></ion-icon>
+                            </div>
+                            <div class="button is-small is-danger">
+                                <ion-icon name="bookmarks-outline"></ion-icon>
+                            </div>
+                            <div class="button is-small is-danger">
+                                <ion-icon name="trash-outline"></ion-icon>
+                            </div>
+                            <div class="button is-small is-danger">
+                                <ion-icon name="lock-closed-outline"></ion-icon>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
+
 
 
 

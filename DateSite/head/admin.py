@@ -7,14 +7,14 @@ class SlugAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 
 class UserProfileInline(admin.StackedInline):
-    model = UserProfile
+    model = Profile
     can_delete = False
-    verbose_name_plural = 'UserProfile'
+    verbose_name_plural = 'Profile'
 
 class CustomizedUserAdmin(UserAdmin):
     inlines = (UserProfileInline, )
 
 admin.site.register(SliderImage)
-admin.site.register(UserProfile)
+admin.site.register(Profile)
 admin.site.unregister(User)
 admin.site.register(User, CustomizedUserAdmin)
