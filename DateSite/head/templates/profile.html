@@ -4,95 +4,7 @@
 
 {% block content %}
 <div class="columns">
-    <div class="column is-2">
-        <div class="wrapper">
-            <div class="sidebar">
-                <div class="profile has-text-centered">
-                    <img src="{% static 'static/images/logo.png' %}" style="width: 70%">
-                    <img id="avatar" style="margin-top: 1px" src="{{ account.image.url }}" alt="profile_picture">
-                    <div class="title" style="color: lightgoldenrodyellow;">{{ user.username }}</div>
-                    <div class="subtitle" style="color: lightgoldenrodyellow">Designer</div>
-                </div>
-                <ul>
-                    <li>
-                        <a href="{% url 'head:search' %}">
-                            <ion-icon name="search-outline"></ion-icon>
-                            <span class="item">Поиск знакомств</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'head:profile' account.pk %}">
-                            <ion-icon name="person-outline"></ion-icon>
-                            <span class="item">Мой профиль</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'head:news' %}">
-                            <ion-icon name="newspaper-outline"></ion-icon>
-                            <span class="item">Новости</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'head:chat' %}">
-                            <ion-icon name="mail-open-outline"></ion-icon>
-                            <span class="item">Сообщения</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'head:friends' %}">
-                            <ion-icon name="people-outline"></ion-icon>
-                            <span class="item">Друзья</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'head:favorite' %}">
-                            <ion-icon name="heart-outline"></ion-icon>
-                            <span class="item">Избранные</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'head:photo' %}">
-                            <ion-icon name="images-outline"></ion-icon>
-                            <span class="item">Фотографии</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{% url 'head:settings' %}">
-                            <ion-icon name="settings-outline"></ion-icon>
-                            <span class="item">Настройки</span>
-                        </a>
-                    </li>
-                </ul>
-                <button class="button is-danger" style="position: absolute; bottom: 5px; left: 5px">
-                    <a href="{% url 'head:sign_out' %}" style="color: white">Выйти</a>
-                </button>
-            </div>
-        </div>
-    </div>
     <div class="column pt-3 mr-5">
-        <div class="columns is-vcentered is-multiline" style="margin-bottom: 0; padding-bottom: 1px">
-            <div class="column is-6">
-                <form>
-                    <div class="field has-addons">
-                        <div class="control" style="width: 100%">
-                            <input type="text" class="input" name="search" placeholder="найти друга">
-                        </div>
-                        <div class="control">
-                            <button class="button" style="color: white; background-color: lightsalmon">
-                                <ion-icon name="search-outline"></ion-icon>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="column">
-                <div class="subtitle has-text-right"
-                    style="color: orangered; font-family: 'Academy Engraved LET'; font-size: 50px; margin: 1px; margin-top: 5px; padding: 5px; bottom: 1px">
-                    CLICKDATE
-                </div>
-            </div>
-        </div>
-
         <div class="box has-background-warning-light">
             <div class="columns is-vcentered is-multiline">
                 <div class="column is-4">
@@ -102,15 +14,17 @@
                             <img src="{{ account.image.url }}" alt="">
                         </figure>
 
-                        <a href="{% url 'head:profile' account.pk %}?action=photo" style="color: white;" 
+                        <a href="{% url 'head:edit_photo' %}?action=photo" style="color: white;"
                             class="button is-danger is-fullwidth">
                             <div class="">Изменить фотографию</div>
                             <ion-icon name="camera-outline"></ion-icon>
                         </a>
+                        {% if account.image != 'default-profile-photo.png' %}
                         <a href="{% url 'head:profile' account.pk %}?action=delete" style="color: white;"
                             class="button is-primary is-fullwidth">
                             <div class="">Удалить фотографию</div>
                         </a>
+                        {% endif %}
                     </div>
                     <div class="modal {% if confirm_photo %} is-active {% endif %}">
                         <div class="modal-background"></div>
@@ -185,29 +99,45 @@
                             About me
                         </div>
                         <hr>
+                        {% if account.about %}
                         <div class="subtitle">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid amet atque doloribus
-                            enim
-                            eveniet
-                            harum hic illo ipsam laboriosam maxime minima minus modi molestias nesciunt nisi odio
-                            officiis
-                            pariatur possimus praesentium, rem, repellendus rerum saepe sed, suscipit tempore vel
-                            voluptas!
-                            Accusamus adipisci alias amet at autem beatae consectetur, consequuntur corporis culpa
-                            cupiditate
-                            dolor dolores eius est eum illo illum iste itaque labore laboriosam laudantium nulla
-                            numquam
-                            obcaecati odit quam quisquam quos recusandae reiciendis rem repellendus repudiandae sed
-                            suscipit
-                            tempore voluptate! Aliquid atque consequatur cupiditate distinctio dolorem doloribus,
-                            impedit
-                            laborum laudantium maiores molestias non quas quibusdam quidem reprehenderit sequi vero,
-                            voluptatum.
+                            {{ account.about }}
                         </div>
+                        {% else %}
+                        <div class="subtitle has-text-grey">
+                            Оставьте информацию о себе
+                        </div>
+                        {% endif %}
                         <button class="button is-danger has-text-centered">
-                            <a href="" style="color: white">Редактировать</a>
+                            <a href="{% url 'head:edit_about' %}?action=about_me" style="color: white">Редактировать</a>
                             <ion-icon name="create-outline"></ion-icon>
                         </button>
+                        <div class="modal {% if confirm_about %} is-active {% endif %}">
+                            <div class="modal-background"></div>
+                            <div class="modal-content">
+                                <div class="columns is-centered mt-3">
+                                    <div class="column is-6">
+                                        <div class="box has-background"
+                                            style="background-color: lavenderblush; box-shadow: 0 0 5px 5px lightpink">
+                                            <form method="post" enctype="multipart/form-data">
+                                                <div class="has-text-right">
+                                                    <a href="{% url 'head:profile' account.pk %}">
+                                                        <ion-icon class="is-size-3" name="close-outline"></ion-icon>
+                                                    </a>
+                                                </div>
+                                                {% csrf_token %}
+                                                {{ about_me_form }}
+                                                <div class="has-text-centered">
+                                                    <button class="button is-danger is-fullwidth">
+                                                        Изменить
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="column is-12">

@@ -16,57 +16,93 @@ def home(request):
         return redirect('head:profile', pk=user.pk)
     return render(request, 'home.html', {'form': form, 'confirm_login': confirm_login})
 
-  
+
 def profile(request, pk):
-    user_pk = User.objects.get(pk=pk)
-    account = UserProfile.objects.get(user=user_pk)
+    account = UserProfile.objects.get(user__username=request.user.username)
+    return render(request, 'profile.html', {'account': account})
+
+
+def edit_photo(request):
+    account = UserProfile.objects.get(user__username=request.user.username)
     form = PhotoProfile(request.POST or None,
                         request.FILES or None,
                         instance=account)
+
     action = request.GET.get('action')
-    # act_ph = request.GET.get('act_ph')
     confirm_photo = False
+
     if action == 'photo':
         confirm_photo = True
         if form.is_valid():
             form.save()
-            return redirect('head:profile', pk=pk)
+            return redirect('head:profile', pk=account.pk)
     if action == 'delete':
         account.image = 'default-profile-photo.png'
         account.save()
-    return render(request, 'profile.html', {'account': account, 'form': form, 
-                                            'confirm_photo': confirm_photo})
 
+    return render(request, 'profile.html', {'account': account, 'form': form, 'confirm_photo': confirm_photo})
+
+
+def edit_about(request):
+    account = UserProfile.objects.get(user__username=request.user.username)
+
+    about_me_form = AboutMeProfile(request.POST or None, instance=account)
+    action = request.GET.get('action')
+    confirm_about = False
+
+    if action == 'about_me':
+        confirm_about = True
+        if about_me_form.is_valid():
+            account.save()
+            return redirect('head:profile', pk=account.pk)
+
+    return render(request, 'profile.html',
+                  {'account': account, 'about_me_form': about_me_form, 'confirm_about': confirm_about})
 
 
 def news(request):
-    return render(request, 'news.html', {})
+    account = UserProfile.objects.get(user__username=request.user.username)
+    return render(request, 'news.html', {'account': account})
 
 
 def chat(request):
-    return render(request, 'chat.html', {})
+    account = UserProfile.objects.get(user__username=request.user.username)
+    return render(request, 'chat.html', {'account': account})
 
 
 def friends(request):
-    return render(request, 'friends.html', {})
+    account = UserProfile.objects.get(user__username=request.user.username)
+    action = request.GET.get('action')
+    if action:
+        account.friends.add(request.user)\
+            if request.user not in account.friends.all() \
+            else account.friends.remove(request.user)
+        # return redirect()
+    my_friends = account.friends.all()
+    return render(request, 'friends.html', {'account': account, 'friends': my_friends})
 
 
 def favorite(request):
-    return render(request, 'favorite.html')
+    account = UserProfile.objects.get(user__username=request.user.username)
+    return render(request, 'favorite.html', {'account': account})
 
 
 def photo(request):
-    return render(request, 'photo.html')
+    account = UserProfile.objects.get(user__username=request.user.username)
+    return render(request, 'photo.html', {'account': account})
 
 
 def settings(request):
-    return render(request, 'settings.html', {})
+    account = UserProfile.objects.get(user__username=request.user.username)
+    return render(request, 'settings.html', {'account': account})
 
 
 def search(request):
-    return render(request, 'search.html', {})
+    account = UserProfile.objects.get(user__username=request.user.username)
+    return render(request, 'search.html', {'account': account})
 
 
 def sign_out(request):
     logout(request)
     return redirect('head:home')
+ 

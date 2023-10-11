@@ -3,113 +3,113 @@
 
 
 {% block content %}
-    <div class="columns">
-        <div class="column is-2">
-            <div class="wrapper">
-                <div class="sidebar">
-                    <div class="profile has-text-centered">
-                        <img src="{% static 'static/images/logo.png' %}" style="width: 70%">
-                        <img id="avatar" style="margin-top: 1px"
-                             src="https://cdn1.flamp.ru/f095db715d8ab92aed99398c0d3d3892.png"
-                             alt="profile_picture">
-                        <div class="title" style="color: lightgoldenrodyellow;">{{ user.username }}</div>
-                        <div class="subtitle" style="color: lightgoldenrodyellow">Designer</div>
-                    </div>
-                    <ul>
-                        <li>
-                            <a href="{% url 'head:search' %}">
-                                <ion-icon name="search-outline"></ion-icon>
-                                <span class="item">Поиск знакомств</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'head:profile' user.pk %}">
-                                <ion-icon name="person-outline"></ion-icon>
-                                <span class="item">Мой профиль</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'head:news' %}">
-                                <ion-icon name="newspaper-outline"></ion-icon>
-                                <span class="item">Новости</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'head:chat' %}">
+    <div class="box has-background-warning-light" style="height: 88vh; overflow: scroll">
+        <div class="columns is-vcentered is-multiline">
+            <div class="column">
+                <div class="title has-text-centered" style="font-family: 'Comic Sans MS'; margin-top: 10px">Мои друзья</div>
+                <style>
+                    .grid-container {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                        grid-gap: 5px;
+                    }
+
+                    .user-card {
+                        background-color: lightsalmon;
+                        margin: 20px;
+                        border-radius: 5px;
+                        box-shadow: 2px 2px 2px 3px rgba(0, 0, 0, 0.1);
+                        height: 400px;
+                    }
+
+                    .user-card h3 {
+                        margin-top: 0;
+                    }
+
+                    .box {
+                        padding: 3px;
+                        margin-right: 5px;
+                        margin-left: 5px;
+                    }
+
+                    img {
+                        border-radius: 5px;
+                    }
+                    .buttons   {
+                        margin-left: 10px;
+                        padding: 3px;
+                    }
+                    .button  {
+                        padding-bottom: 3px;
+                    }
+
+                </style>
+                <div class="grid-container">
+                    {% for friend in friends %}
+                    <div class="user-card">
+                        <h3 class="subtitle has-text-centered" style="color: white">Name LastName</h3>
+                        <div class="box">
+                            <figure class="image-1">
+                                <img class="placeholder" src="{% static 'uploads/photo_2023-09-04 21.22.03.jpeg' %}">
+                            </figure>
+                        </div>
+
+                        <p class="has-text-centered" style="color: white">Lorem ipsum dolor sit amet.</p>
+                        <br>
+
+                        <div class="buttons">
+                            <div class="button is-small is-danger" id="1">
                                 <ion-icon name="mail-open-outline"></ion-icon>
-                                <span class="item">Сообщения</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'head:friends' %}">
-                                <ion-icon name="people-outline"></ion-icon>
-                                <span class="item">Друзья</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'head:favorite' %}">
-                                <ion-icon name="heart-outline"></ion-icon>
-                                <span class="item">Избранные</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'head:photo' %}">
-                                <ion-icon name="images-outline"></ion-icon>
-                                <span class="item">Фотографии</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'head:settings' %}">
-                                <ion-icon name="settings-outline"></ion-icon>
-                                <span class="item">Настройки</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <button class="button is-danger" style="position: absolute; bottom: 5px; left: 5px">
-                        <a href="{% url 'head:sign_out' %}" style="color: white">Выйти</a>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="column pt-3 mr-5">
-            <div class="columns is-vcentered is-multiline" style="margin-bottom: 0; padding-bottom: 1px">
-                <div class="column is-6">
-                    <form>
-                        <div class="field has-addons">
-                            <div class="control" style="width: 100%">
-                                <input type="text" class="input" name="search" placeholder="найти друга">
                             </div>
-                            <div class="control">
-                                <button class="button" style="color: white; background-color: lightsalmon">
-                                    <ion-icon name="search-outline"></ion-icon>
-                                </button>
+                            <div class="button is-small is-danger">
+                                <ion-icon name="bookmarks-outline"></ion-icon>
+                            </div>
+                            <div class="button is-small is-danger">
+                                <ion-icon name="trash-outline"></ion-icon>
+                            </div>
+                            <div class="button is-small is-danger">
+                                <ion-icon name="lock-closed-outline"></ion-icon>
                             </div>
                         </div>
-                    </form>
-                </div>
-                <div class="column">
-                    <div class="subtitle has-text-right"
-                         style="color: orangered; font-family: 'Academy Engraved LET'; font-size: 50px; margin: 1px; margin-top: 5px; padding: 5px; bottom: 1px">
-                        CLICKDATE
+
                     </div>
+                    {% endfor %}
+
+
+                    <!-- <div class="user-card">
+                        <h3>User</h3>
+                        <img src="{% static 'uploads/avatartest2.png' %}" alt="">
+                        <div class="p"></div>
+                    </div>
+                    <div class="user-card">
+                        <h3>User</h3>
+                        <img src="{% static 'uploads/avatartest2.png' %}" alt="">
+                        <div class="p"></div>
+                    </div>
+                    <div class="user-card">
+                        <h3>User</h3>
+                        <img src="{% static 'uploads/avatartest2.png' %}" alt="">
+                        <div class="p"></div>
+                    </div>
+                    <div class="user-card">
+                        <h3>User</h3>
+                        <img src="{% static 'uploads/avatartest2.png' %}" alt="">
+                        <div class="p"></div>
+                    </div>
+                    <div class="user-card">
+                        <h3>User</h3>
+                        <img src="{% static 'uploads/avatartest2.png' %}" alt="">
+                        <div class="p"></div>
+                    </div>
+                    <div class="user-card">
+                        <h3>User</h3>
+                        <img src="{% static 'uploads/avatartest2.png' %}" alt="">
+                        <div class="p"></div>
+                    </div> -->
                 </div>
-            </div>
-            <div class="box has-background-warning-light">
-
-
             </div>
         </div>
     </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-
 {% endblock %}
-
-
-
-
 
 

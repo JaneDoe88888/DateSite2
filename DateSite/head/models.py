@@ -25,16 +25,23 @@ GENDER_CHOICE = [
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='default-profile-photo.png', blank=True)
+    first_name = models.CharField(max_length=255, null=True)
+    last_name = models.CharField(max_length=255, null=True)
+    city = models.CharField(max_length=255, null=True)
+    about = models.TextField(null=True)
+    job = models.CharField(max_length=255, null=True)
+    hobbies = models.CharField(max_length=255, null=True)
+    friends = models.ManyToManyField('self', blank=True)
 
     def __str__(self):
         return self.user.username
 
 
-class Profile(models.Model):
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
-    city = models.CharField(max_length=255)
-    about = models.TextField()
-    job = models.CharField(max_length=255)
-    hobbies = models.CharField(max_length=255)
-    image = models.ImageField()
+# class Profile(models.Model):
+#     first_name = models.CharField(max_length=255)
+#     last_name = models.CharField(max_length=255)
+#     city = models.CharField(max_length=255)
+#     about = models.TextField()
+#     job = models.CharField(max_length=255)
+#     hobbies = models.CharField(max_length=255)
+#     image = models.ImageField()

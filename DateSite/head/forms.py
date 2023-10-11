@@ -19,3 +19,12 @@ class PhotoProfile(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['image',]
+
+class AboutMeProfile(forms.ModelForm, BulmaMixin):
+    about = forms.CharField(widget=forms.Textarea(attrs={
+        'class': 'textarea'
+    }), label='Расскажите о себе', required=False)
+
+    class Meta:
+        model = UserProfile
+        fields = ['about',]
