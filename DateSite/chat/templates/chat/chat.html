@@ -1,0 +1,259 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="box has-background-warning-light" style="height: 86vh; overflow: scroll">
+        <div class="title has-text-centered" style="font-family: 'Comic Sans MS'">Мои сообщения</div>
+        <div class="columns is-vcentered is-multiline">
+            <div class="column">
+                {#                <div class="columns">#}
+                {#                    <div class="column">#}
+                {#                        <div class="box" style="min-height: 73vh; position: relative">#}
+                {#                            {% if request.user.is_authenticated %}#}
+                {#                <center> Logout the chat Page <a href="{% url 'logout-user' %}">Logout</a></center>#}
+                {#                            {% endif %}#}
+                {#                            <div class="chat__item__container"#}
+                {#                                 id="id_chat_item_container"#}
+                {#                                 style="font-size: 20px; text-align: left; max-height: 45vh; overflow: scroll">#}
+                {##}
+                {#                            </div>#}
+                {#                            <div style="position: absolute; bottom: 10px; margin-top: 5px"#}
+                {#                                 class="box has-background-info-light">#}
+                {#                                <input style="width: 300px; height: 40px" type="text" id="id_message_send_input"/>#}
+                {#                                <button class="button is-danger" type="submit" id="id_message_send_button">#}
+                {#                                    Отправить#}
+                {#                                </button>#}
+                {#                            </div>#}
+                {##}
+                {#                            <script>#}
+                {#                                const chatSocket = new WebSocket("ws://" + window.location.host + "/");#}
+                {#                                chatSocket.onopen = function (e) {#}
+                {#                                    console.log("The connection was setup successfully !");#}
+                {#                                };#}
+                {#                                chatSocket.onclose = function (e) {#}
+                {#                                    console.log("Something unexpected happened !");#}
+                {#                                };#}
+                {#                                document.querySelector("#id_message_send_input").focus();#}
+                {#                                document.querySelector("#id_message_send_input").onkeyup = function (e) {#}
+                {#                                    if (e.keyCode === 13) {#}
+                {#                                        document.querySelector("#id_message_send_button").click();#}
+                {#                                    }#}
+                {#                                };#}
+                {#                                document.querySelector("#id_message_send_button").onclick = function (e) {#}
+                {#                                    let messageInput = document.querySelector(#}
+                {#                                        "#id_message_send_input"#}
+                {#                                    ).value;#}
+                {#                                    chatSocket.send(JSON.stringify({#}
+                {#                                        message: messageInput,#}
+                {#                                        username: "{{request.user.username}}"#}
+                {#                                    }));#}
+                {#                                };#}
+                {#                                chatSocket.onmessage = function (e) {#}
+                {#                                    const data = JSON.parse(e.data);#}
+                {#                                    let div = document.createElement("div");#}
+                {#                                    div.innerHTML = data.username + " : " + data.message;#}
+                {#                                    document.querySelector("#id_message_send_input").value = "";#}
+                {#                                    document.querySelector("#id_chat_item_container").appendChild(div);#}
+                {#                                    div.scrollIntoView({behavior: 'smooth'})#}
+                {#                                };#}
+                {#                            </script>#}
+                {#                        </div>#}
+                {#                    </div>#}
+                {#                </div>#}
+                {#            </div>#}
+                {#            <div class="column">#}
+                {#                <div class="box" style="height: 73vh; overflow: scroll">#}
+                <div class="container">
+                    <div class="row clearfix">
+                        <div class="col-lg-12">
+                            <div class="card chat-app">
+                                <div id="plist" class="people-list">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fa fa-search"></i></span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Поиск..."
+                                               style="width: 240px">
+                                    </div>
+                                    <ul class="list-unstyled chat-list mt-2 mb-0">
+                                        {% for chat in chats %}
+                                            {% for companion in chat.members.all %}
+                                                {% if request.user != companion %}
+                                                    <a href="{% url 'chat:chat' chat.id %}">
+                                                        {% if active_chat.id == chat.id %}
+                                                            <li class="clearfix active">
+                                                                {% else %}
+                                                            <li class="clearfix">
+                                                        {% endif %}
+
+                                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                                                             alt="avatar">
+                                                        <div class="about">
+                                                            <div class="name">{{ companion.username }}</div>
+                                                            <div class="status"><i class="fa fa-circle offline"></i>
+                                                                {{ companion.last_login }}
+                                                            </div>
+                                                        </div>
+                                                        </li>
+                                                    </a>
+
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <div class="chat">
+                                    <div class="chat-header clearfix">
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <a href="javascript:void(0);" data-toggle="modal"
+                                                   data-target="#view_info">
+                                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png"
+                                                         alt="avatar">
+                                                </a>
+                                                <div class="chat-about">
+                                                    <h6 class="m-b-0">{{ user.username }}</h6>
+                                                    <small>2 days ago</small>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 hidden-sm text-right">
+                                                <a href="javascript:void(0);" class="btn btn-outline-secondary"><i
+                                                        class="fa fa-camera"></i></a>
+                                                <a href="javascript:void(0);" class="btn btn-outline-primary"><i
+                                                        class="fa fa-image"></i></a>
+                                                <a href="javascript:void(0);" class="btn btn-outline-info"><i
+                                                        class="fa fa-cogs"></i></a>
+                                                <a href="javascript:void(0);" class="btn btn-outline-warning"><i
+                                                        class="fa fa-question"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="chat-history">
+                                        <ul class="m-b-0" id="id_chat_item_container">
+                                            {% for message in active_chat.messages.all %}
+                                                <li class="clearfix">
+                                                    {% if request.user.id == message.author.id %}
+                                                        <div class="message-data float-right">
+                                                    {% else %}
+                                                        <div class="message-data">
+                                                    {% endif %}
+
+                                                    <span class="message-data-time">{{ message.pub_date }}</span>
+                                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                                                         alt="avatar">
+                                                    </div>
+
+                                                    {% if request.user.id == message.author.id %}
+                                                        <div class="message other-message float-right">
+                                                    {% else %}
+                                                        <div class="message my-message">
+                                                    {% endif %}
+                                                    {{ message.content }}
+                                                    </div>
+                                                </li>
+                                            {% endfor %}
+
+                                        </ul>
+                                    </div>
+
+                                    <div class="chat-message clearfix">
+                                        <div class="input-group mb-0">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fa fa-send"></i></span>
+                                            </div>
+                                            <input type="text" id="id_message_send_input" class="form-control"
+                                                   placeholder="Напишите сообщение..."
+                                                   style="width: 500px; height: 40px">
+                                            <button class="button is-danger" type="submit"
+                                                    id="id_message_send_button">
+                                                Отправить
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        const chatItems = document.querySelectorAll('.chat-item');
+                                        chatItems.forEach((chatItem) => {
+                                            chatItem.addEventListener('click', openChat);
+                                        });
+
+                                        function openChat(event) {
+                                            const clickedChatItem = event.currentTarget;
+                                            const chatId = clickedChatItem.dataset.chatId;
+                                            console.log(`open chat:${chatId}`)
+                                        }
+
+
+                                        const chatSocket = new WebSocket(
+                                            "ws://127.0.0.1:8000/chats/"
+                                        );
+                                        chatSocket.onopen = function (e) {
+                                            console.log("The connection was setup successfully !");
+                                        };
+                                        chatSocket.onclose = function (e) {
+                                            console.log("Something unexpected happened !");
+                                        };
+                                        document.querySelector("#id_message_send_input").focus();
+                                        document.querySelector("#id_message_send_input").onkeyup = function (e) {
+                                            if (e.keyCode === 13) {
+                                                document.querySelector("#id_message_send_button").click();
+                                            }
+                                        };
+                                        document.querySelector("#id_message_send_button").onclick = function (e) {
+                                            let messageInput = document.querySelector(
+                                                "#id_message_send_input"
+                                            ).value;
+                                            chatSocket.send(JSON.stringify({
+                                                message: messageInput,
+                                                chat_id: {{ active_chat.id }},
+                                                author_id: "{{request.user.id}}"
+                                            }));
+                                        };
+
+                                        chatSocket.onmessage = function (e) {
+                                            const data = JSON.parse(e.data);
+                                            if (Number({{ active_chat.id }}) !== Number(data.chat_id)){
+                                                return
+                                            }
+
+                                            let new_message = document.createElement("li");
+                                            let message_data = ''
+                                            if (Number({{ request.user.id }}) === Number(data.author_id)) {
+                                                message_data = '<div class="message-data float-right">'
+                                            }else{
+                                                message_data = '<div class="message-data">'
+                                            }
+                                            let message_content = ''
+
+                                            if (Number({{ request.user.id }}) === Number(data.author_id)) {
+                                                message_content = '<div class="message other-message float-right">'
+                                            }else{
+                                                message_content = '<div class="message my-message">'
+                                            }
+
+
+                                            new_message.innerHTML = message_data + `<span class="message-data-time">${data.pub_date}</span>` +
+                                                "<img src='https://bootdey.com/img/Content/avatar/avatar7.png' alt='avatar'></div>" +
+                                                message_content + data.message + '</div>'
+
+
+                                            document.querySelector("#id_message_send_input").value = "";
+                                            new_message.classList.add('clearfix')
+                                            document.getElementById("id_chat_item_container").appendChild(new_message);
+                                            new_message.scrollIntoView(
+                                                {
+                                                    behavior: 'smooth'
+                                                }
+                                            )
+                                        };
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

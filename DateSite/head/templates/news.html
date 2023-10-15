@@ -3,263 +3,80 @@
 
 
 {% block content %}
-    <div class="columns">
-        <div class="column is-2">
-            <div class="wrapper">
-                <div class="sidebar">
-                    <div class="profile has-text-centered">
-                        <img src="{% static 'static/logo.png' %}" style="width: 70%">
-                        <img id="avatar" style="margin-top: 1px"
-                             src="https://cdn1.flamp.ru/f095db715d8ab92aed99398c0d3d3892.png"
-                             alt="profile_picture">
-                        <div class="title" style="color: lightgoldenrodyellow;">{{ user.username }}</div>
-                        <div class="subtitle" style="color: lightgoldenrodyellow">Designer</div>
-                    </div>
-                    <ul>
-                        <li>
-                            <a href="{% url 'head:search' %}">
-                                <ion-icon name="search-outline"></ion-icon>
-                                <span class="item">Поиск знакомств</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'head:profile' %}">
-                                <ion-icon name="person-outline"></ion-icon>
-                                <span class="item">Мой профиль</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'head:news' %}">
-                                <ion-icon name="newspaper-outline"></ion-icon>
-                                <span class="item">Новости</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'head:chat' %}">
-                                <ion-icon name="mail-open-outline"></ion-icon>
-                                <span class="item">Сообщения</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'head:friends' %}">
-                                <ion-icon name="people-outline"></ion-icon>
-                                <span class="item">Друзья</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'head:favorite' %}">
-                                <ion-icon name="heart-outline"></ion-icon>
-                                <span class="item">Избранные</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'head:photo' %}">
-                                <ion-icon name="images-outline"></ion-icon>
-                                <span class="item">Фотографии</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'head:settings' %}">
-                                <ion-icon name="settings-outline"></ion-icon>
-                                <span class="item">Настройки</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <button class="button is-danger" style="position: absolute; bottom: 5px; left: 5px">
-                        <a href="{% url 'head:sign_out' %}" style="color: white">Выйти</a>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="column pt-3 mr-5" style="position: relative">
-            <div class="columns is-vcentered is-multiline" style="margin-bottom: 0; padding-bottom: 1px">
-                <div class="column is-6">
-                    <form>
-                        <div class="field has-addons">
-                            <div class="control" style="width: 100%">
-                                <input type="text" class="input" name="search" placeholder="найти друга">
-                            </div>
-                            <div class="control">
-                                <button class="button" style="color: white; background-color: lightsalmon">
-                                    <ion-icon name="search-outline"></ion-icon>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="column">
-                    <div class="subtitle has-text-right"
-                         style="color: orangered; font-family: 'Academy Engraved LET'; font-size: 50px; margin: 1px; margin-top: 5px; padding: 5px; bottom: 1px">
-                        CLICKDATE
-                    </div>
-                </div>
-            </div>
-
-            <div class="box has-background-warning-light" style="height: 85vh; overflow: scroll">
-                <div class="columns ">
-                    <div class="column is-10">
-                        <div class="columns is-multiline">
-                            <div class="column">
-                                <div class="box">
-                                    <img src="{% static 'uploads/photo_2023-09-04_21.21.43.jpeg' %}">
-                                    <br>
-                                    <div class="text">
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore, totam?r
+    <div class="box has-background-warning-light" style="height: 88vh; overflow: scroll">
+        <div class="columns ">
+            <div class="column is-10">
+                <div class="columns is-multiline">
+                    <div class="column is-12">
+                        <div class="box">
+                            <div class="columns">
+                                <div class="column">
+                                    <div class="box">
+                                        <div class="image">
+                                            <img src="{% static 'uploads/photo_2023-09-04_21.21.43.jpeg' %}">
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="column is-10">
-                                <div class="box">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aspernatur beatae
-                                    consequuntur
-                                    corporis doloremque harum hic iure nemo, neque repellat. Facere libero odit quisquam
-                                    quod
-                                    reiciendis, unde veniam voluptate? Deleniti expedita quia voluptates. Ab alias
-                                    asperiores,
-                                    aspernatur assumenda autem, consequatur consequuntur corporis delectus dolore
-                                    doloremque
-                                    dolores
-                                    doloribus facere hic illum, in laborum laudantium minima numquam pariatur porro
-                                    possimus
-                                    quod
-                                    repellat reprehenderit rerum soluta vero vitae? A ad alias aspernatur beatae commodi
-                                    consequuntur corporis cumque doloremque eius est eum ex exercitationem explicabo
-                                    facilis
-                                    fuga
-                                    hic iure magnam magni necessitatibus nobis optio, pariatur porro provident
-                                    recusandae
-                                    repellendus rerum veniam voluptatem. Amet, voluptatibus!
-                                </div>
-                            </div>
-                            <div class="column is-10">
-                                <div class="box">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aspernatur beatae
-                                    consequuntur
-                                    corporis doloremque harum hic iure nemo, neque repellat. Facere libero odit quisquam
-                                    quod
-                                    reiciendis, unde veniam voluptate? Deleniti expedita quia voluptates. Ab alias
-                                    asperiores,
-                                    aspernatur assumenda autem, consequatur consequuntur corporis delectus dolore
-                                    doloremque
-                                    dolores
-                                    doloribus facere hic illum, in laborum laudantium minima numquam pariatur porro
-                                    possimus
-                                    quod
-                                    repellat reprehenderit rerum soluta vero vitae? A ad alias aspernatur beatae commodi
-                                    consequuntur corporis cumque doloremque eius est eum ex exercitationem explicabo
-                                    facilis
-                                    fuga
-                                    hic iure magnam magni necessitatibus nobis optio, pariatur porro provident
-                                    recusandae
-                                    repellendus rerum veniam voluptatem. Amet, voluptatibus!
-                                </div>
-                            </div>
-                            <div class="column is-10">
-                                <div class="box">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aspernatur beatae
-                                    consequuntur
-                                    corporis doloremque harum hic iure nemo, neque repellat. Facere libero odit quisquam
-                                    quod
-                                    reiciendis, unde veniam voluptate? Deleniti expedita quia voluptates. Ab alias
-                                    asperiores,
-                                    aspernatur assumenda autem, consequatur consequuntur corporis delectus dolore
-                                    doloremque
-                                    dolores
-                                    doloribus facere hic illum, in laborum laudantium minima numquam pariatur porro
-                                    possimus
-                                    quod
-                                    repellat reprehenderit rerum soluta vero vitae? A ad alias aspernatur beatae commodi
-                                    consequuntur corporis cumque doloremque eius est eum ex exercitationem explicabo
-                                    facilis
-                                    fuga
-                                    hic iure magnam magni necessitatibus nobis optio, pariatur porro provident
-                                    recusandae
-                                    repellendus rerum veniam voluptatem. Amet, voluptatibus!
-                                </div>
-                            </div>
-                            <div class="column is-10">
-                                <div class="box">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aspernatur beatae
-                                    consequuntur
-                                    corporis doloremque harum hic iure nemo, neque repellat. Facere libero odit quisquam
-                                    quod
-                                    reiciendis, unde veniam voluptate? Deleniti expedita quia voluptates. Ab alias
-                                    asperiores,
-                                    aspernatur assumenda autem, consequatur consequuntur corporis delectus dolore
-                                    doloremque
-                                    dolores
-                                    doloribus facere hic illum, in laborum laudantium minima numquam pariatur porro
-                                    possimus
-                                    quod
-                                    repellat reprehenderit rerum soluta vero vitae? A ad alias aspernatur beatae commodi
-                                    consequuntur corporis cumque doloremque eius est eum ex exercitationem explicabo
-                                    facilis
-                                    fuga
-                                    hic iure magnam magni necessitatibus nobis optio, pariatur porro provident
-                                    recusandae
-                                    repellendus rerum veniam voluptatem. Amet, voluptatibus!
-                                </div>
-                            </div>
-                            <div class="column is-10">
-                                <div class="box">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aspernatur beatae
-                                    consequuntur
-                                    corporis doloremque harum hic iure nemo, neque repellat. Facere libero odit quisquam
-                                    quod
-                                    reiciendis, unde veniam voluptate? Deleniti expedita quia voluptates. Ab alias
-                                    asperiores,
-                                    aspernatur assumenda autem, consequatur consequuntur corporis delectus dolore
-                                    doloremque
-                                    dolores
-                                    doloribus facere hic illum, in laborum laudantium minima numquam pariatur porro
-                                    possimus
-                                    quod
-                                    repellat reprehenderit rerum soluta vero vitae? A ad alias aspernatur beatae commodi
-                                    consequuntur corporis cumque doloremque eius est eum ex exercitationem explicabo
-                                    facilis
-                                    fuga
-                                    hic iure magnam magni necessitatibus nobis optio, pariatur porro provident
-                                    recusandae
-                                    repellendus rerum veniam voluptatem. Amet, voluptatibus!
-                                </div>
-                            </div>
-                            <div class="column is-10">
-                                <div class="box">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid aspernatur beatae
-                                    consequuntur
-                                    corporis doloremque harum hic iure nemo, neque repellat. Facere libero odit quisquam
-                                    quod
-                                    reiciendis, unde veniam voluptate? Deleniti expedita quia voluptates. Ab alias
-                                    asperiores,
-                                    aspernatur assumenda autem, consequatur consequuntur corporis delectus dolore
-                                    doloremque
-                                    dolores
-                                    doloribus facere hic illum, in laborum laudantium minima numquam pariatur porro
-                                    possimus
-                                    quod
-                                    repellat reprehenderit rerum soluta vero vitae? A ad alias aspernatur beatae commodi
-                                    consequuntur corporis cumque doloremque eius est eum ex exercitationem explicabo
-                                    facilis
-                                    fuga
-                                    hic iure magnam magni necessitatibus nobis optio, pariatur porro provident
-                                    recusandae
-                                    repellendus rerum veniam voluptatem. Amet, voluptatibus!
+                                    <div class="text">
+                                        Lorem ipsum dolor sit amet.
+                                    </div>
+                                    {% if user in news.likes.all %}
+                                        <div class="button is-small">
+                                            <a href="{% url 'head:edit_profile' %}?action=liked_news&news={{ news.pk }}"></a>
+                                            <ion-icon name="heart-outline"></ion-icon>
+                                        </div>
+                                    {% else %}
+                                        <div class="button is-small">
+                                            <a href="{% url 'head:edit_profile' %}?action=liked_news&news={{ news.pk }}"></a>
+                                            <ion-icon name="heart" class="has-text-danger"></ion-icon>
+                                        </div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="column has-text-right">
-                        <div class="buttons" style="position: fixed">
-                            <div class="button">
-                                <a href="">Мои публикации</a>
-                            </div>
-                            <div class="button" style="text-align: right">
-                                <a href="">Добавить историю</a>
-                            </div>
-                            <div class="button" style="text-align: right">
-                                <a href="">Удалить историю</a>
+                    <div class="column is-12">
+                        <div class="box">
+                            <div class="columns">
+                                <div class="column">
+                                    <div class="box">
+                                        <div class="image">
+                                            <img src="{% static 'uploads/photo_2023-09-04_21.21.43.jpeg' %}">
+                                        </div>
+                                    </div>
+
+                                    <div class="text">
+                                        Lorem ipsum dolor sit amet.
+                                    </div>
+                                    {% if user in news.likes.all %}
+                                        <div class="button is-small">
+                                            <a href="{% url 'head:edit_profile' %}?action=liked_news&news={{ news.pk }}"></a>
+                                            <ion-icon name="heart-outline"></ion-icon>
+                                        </div>
+                                    {% else %}
+                                        <div class="button is-small">
+                                            <a href="{% url 'head:edit_profile' %}?action=liked_news&news={{ news.pk }}"></a>
+                                            <ion-icon name="heart" class="has-text-danger"></ion-icon>
+                                        </div>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="column has-text-right">
+                <div class="buttons is-danger" style="position: fixed">
+                    <div class="button" style="text-align: right">
+                        <a href="">Мои публикации</a>
+                    </div>
+                    <div class="button" style="text-align: right">
+                        <a href="">Добавить историю</a>
+                    </div>
+                    <div class="button" style="text-align: right">
+                        <a href="">Удалить историю</a>
+                    </div>
+                    <div class="button" style="text-align: right">
+                        <a href="">Истории друзей</a>
                     </div>
                 </div>
             </div>

@@ -5,3 +5,4 @@ class SlugAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 
 admin.site.register(SliderImage)
+admin.site.register(Profile)
