@@ -1,9 +1,19 @@
-function toggleModal(url){
-let modal = document.querySelector('.gallery-modal')
-    // let img = document.createElement('img')
-    // const src = '../uploads/' + url.split('/').at(-1)
-    // img.src = src
-    // modal.querySelector('.modal-content').append(img)
-    // modal.classList.toggle('is-active')
+function toggleModal(url) {
     window.open(url)
+}
+
+const uploadModal = document.querySelector(".upload-modal");
+const fileInput = uploadModal.querySelector("input");
+
+
+function openModal() {
+    uploadModal.classList.add('is-active')
+}
+
+function uploadFile() {
+    const file = fileInput.files[0];
+    console.log(file)
+    // Здесь выполняем логику загрузки файла
+       uploadModal.classList.remove('is-active')
+
 }

@@ -11,7 +11,7 @@ urlpatterns = [
     path('favorite/', views.favorite, name='favorite'),
     path('photo/', views.photo, name='photo'),
     path('settings/', views.settings, name='settings'),
-    path('search/', views.search, name='search')
+    path('search/', views.search, name='search'),
 ]
 
 

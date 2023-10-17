@@ -106,12 +106,24 @@
 
 
                 <div class="gallery">
-                    <button class="button is-danger">
+                    <button class="button is-danger upload-button" onclick="openModal()">
                         <a style="color: white">
-                             загрузить фото</a>
+                            загрузить фото</a>
                         <ion-icon class="icon has-text-white" name="archive"></ion-icon>
                     </button>
-
+                    <div class="modal upload-modal">
+                        <div class="modal-background"></div>
+                        <div class="modal-content">
+                            <div class="box">
+                                <form method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {{form}}
+                                    <button>dasd</button>
+                                </form>
+                            </div>
+                        </div>
+                        <button class="modal-close is-large" aria-label="close"></button>
+                    </div>
                     <div class="columns is-centered is-multiline" style="margin: 5%">
 
 
@@ -121,15 +133,15 @@
                         </div>
                         <div class="box" style="width: 40%; height: 22%">
                             <img src="{% static 'uploads/photo_2023-09-04 21.22.03.jpeg' %}" alt=""
-                                onclick="toggleModal(this.src)">
+                                 onclick="toggleModal(this.src)">
                         </div>
                         <div class="box" style="width: 40%; height: 22%">
                             <img src="{% static 'uploads/photo_2023-09-04 21.22.07.jpeg' %}" alt=""
-                                onclick="toggleModal(this.src)">
+                                 onclick="toggleModal(this.src)">
                         </div>
                         <div class="box" style="width: 40%; height: 22%">
                             <img src="{% static 'uploads/photo_2023-09-04_21.21.43.jpeg' %}" alt=""
-                                onclick="toggleModal(this.src)">
+                                 onclick="toggleModal(this.src)">
                         </div>
 
                     </div>

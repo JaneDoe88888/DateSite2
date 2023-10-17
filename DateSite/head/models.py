@@ -15,7 +15,6 @@ GENDER_CHOICE = [
 ]
 
 
-
 # class User(models.Model):
 #     username = models.CharField(max_length=255)
 #     birthday = models.DateTimeField()
@@ -31,4 +30,9 @@ class Profile(models.Model):
     about = models.TextField()
     job = models.CharField(max_length=255)
     hobbies = models.CharField(max_length=255)
+    image = models.ImageField()
+    images = models.ForeignKey('head.Image', on_delete=models.CASCADE)
+
+
+class Image(models.Model):
     image = models.ImageField()
