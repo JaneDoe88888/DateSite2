@@ -103,38 +103,36 @@
                 <h1 class="title " style="color: #0a0a0a">Личные данные</h1>
                 <hr>
                 <ul>
-                    <li class="is-flex is-justify-content-space-between"  style="color: #0a0a0a">
-                        возраст
-                        <input class="checkbox" type="checkbox">
-                    </li>
+                    <label class="is-flex is-justify-content-space-between"  style="color: #0a0a0a">
+                        возраст  {{ account.birthday }}
+                    </label>
+                        <input class="input" type="text" placeholder="Text input">
+
                     <sub>изменение возраста</sub>
 
                     <hr>
 
-                    <li class="is-flex is-justify-content-space-between" style="color: #0a0a0a">
+                    <label class="is-flex is-justify-content-space-between" style="color: #0a0a0a">
                         город
-                        <input class="checkbox" type="checkbox">
-                    </li>
+
+                    </label>
+                    <input class="input" type="text" placeholder="Text input">
                     <sub >изменение города</sub>
                     <hr>
 
 
-                    <li class="is-flex is-justify-content-space-between" style="color: #0a0a0a">
+                    <label class="is-flex is-justify-content-space-between" style="color: #0a0a0a">
                         карьера
-                        <input class="checkbox" type="checkbox">
-                    </li>
+                    </label>
+                    <input class="input" type="text" placeholder="Text input">
                     <sub >изменение карьеры</sub>
                     <hr>
-                    <li class="is-flex is-justify-content-space-between" style="color: #0a0a0a">
+                    <label class="is-flex is-justify-content-space-between" style="color: #0a0a0a">
                         увлечение
-                        <input class="checkbox" type="checkbox">
-                    </li>
+                    </label>
+                    <input class="input" type="text" placeholder="Text input">
                     <sub >изменение увлечений</sub>
-                    <hr>
-                    <li class="is-flex is-justify-content-space-between" style="color: #0a0a0a">
-                        семейное положение
-                        <input class="checkbox" type="checkbox">
-                    </li>
+
 
                 </ul>
             </div>
@@ -155,6 +153,7 @@
                         дизлайки
                         <input class="checkbox" type="checkbox">
                     </li>
+
                     <sub >Покажем публикации, которые могут вас заинтересовать</sub>
                 </ul>
             </div>
@@ -166,6 +165,7 @@
                         личные сообщения
                         <input class="checkbox" type="checkbox">
                     </li>
+
                     <sub>Уведомление о том, что вас упомянули в чате</sub>
                     <hr>
 
@@ -173,6 +173,7 @@
                         напоминание о сообщениях
                         <input class="checkbox" type="checkbox">
                     </li>
+
                     <sub>Уведомление о том, что у вас есть непрочитанные сообщения или упоминания в чатах</sub>
                 </ul>
             </div>
