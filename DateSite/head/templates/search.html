@@ -3,65 +3,34 @@
 
 
 {% block content %}
-    <div class="box has-background-warning-light" style="height: 88vh; overflow: scroll">
-        <div class="title has-text-centered" style="font-family: 'Comic Sans MS'">Найди своего человека</div>
-        <div class="box" style="width: 80vh; text-align: center">
-            <form action="" method="post">
-                {% csrf_token %}
-                {{ form }}
-                <button type="submit" value="Поиск" style="color: white; background-color: lightsalmon">Поиск</button>
-            </form>
+    <div class="box has-background-warning-light" style="height: 86vh; overflow: scroll">
+        <div class="title has-text-centered" style="font-family: 'Comic Sans MS'; margin-top: 5px">Найди своего
+            человека
+        </div>
+        <div class="box"
+             style="height: 55vh; text-align: center; width: 60vh; margin: 80px auto; box-shadow: 0 0 8px 8px #fcd4dc">
+
+            <div class="form" style="margin: 10px">
+                <form method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="field">
+                            <label for="{{ field.id_for_label }}" class="label">
+                                {{ field.label }}
+                            </label>
+                            <div class="control">
+                                {{ field }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <button class="button is-danger" type="submit" style="width: 120px">
+                        <a href="{% url 'head:found' %}" style="color: white">Поиск</a>
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 {% endblock %}
 
-{#            <form method="post">#}
-{#                <div class="field">#}
-{#                    <label for="gender">Пол</label>#}
-{#                    <select name="gender" id="">#}
-{#                        <option value="male">М</option>#}
-{#                        <option value="female">Ж</option>#}
-{#                        <option value="any">Любой</option>#}
-{#                    </select>#}
-{#                </div>#}
-{##}
-{#                <div class="field">#}
-{#                    <label for="age">Возраст</label>#}
-{#                    <input type="number" min="18" max="55" placeholder="от">#}
-{#                    <input type="number" min="18" max="55" placeholder="до">#}
-{#                </div>#}
-{##}
-{#                <div class="field">#}
-{#                    <label for="city">Город</label>#}
-{#                    <input type="text">#}
-{#                </div>#}
-{##}
-{#                <div class="field">#}
-{#                    <label for="education">Образование</label>#}
-{#                    <select name="education" id="">#}
-{#                        <option value="school">Полное среднее</option>#}
-{#                        <option value="college">Среднее специальное</option>#}
-{#                        <option value="univercity">Высшее специальное</option>#}
-{#                    </select>#}
-{#                </div>#}
-{##}
-{#                <div class="field">#}
-{#                    <label for="job">Карьера</label>#}
-{#                    <input type="text">#}
-{#                </div>#}
-{##}
-{#                <div class="field">#}
-{#                    <label for="status">Семейное положение</label>#}
-{#                    <select name="status" id="">#}
-{#                        <option value="action_search">В активном поиске</option>#}
-{#                        <option value="">Влюблен(а)</option>#}
-{#                        <option value="">Встречается</option>#}
-{#                        <option value="">В гражданском браке</option>#}
-{#                        <option value="">Помолвлен(а)</option>#}
-{#                        <option value="">Женат(Замужем)</option>#}
-{#                        <option value="">Все сложно</option>#}
-{#                        <option value="">Не женат(Не замужем)</option>#}
-{#                    </select>#}
-{#                </div>#}
-{#            </form>#}
+
 

@@ -3,72 +3,16 @@
 
 
 {% block content %}
-    <div class="box has-background-warning-light" style="height: 86vh; overflow: scroll">
+    <div class="box has-background-warning-light" style="height: 86vh">
         <div class="title has-text-centered" style="font-family: 'Comic Sans MS'">Мои сообщения</div>
         <div class="columns is-vcentered is-multiline">
             <div class="column">
-                {#                <div class="columns">#}
-                {#                    <div class="column">#}
-                {#                        <div class="box" style="min-height: 73vh; position: relative">#}
-                {#                            {% if request.user.is_authenticated %}#}
-                {#                <center> Logout the chat Page <a href="{% url 'logout-user' %}">Logout</a></center>#}
-                {#                            {% endif %}#}
-                {#                            <div class="chat__item__container"#}
-                {#                                 id="id_chat_item_container"#}
-                {#                                 style="font-size: 20px; text-align: left; max-height: 45vh; overflow: scroll">#}
-                {##}
-                {#                            </div>#}
-                {#                            <div style="position: absolute; bottom: 10px; margin-top: 5px"#}
-                {#                                 class="box has-background-info-light">#}
-                {#                                <input style="width: 300px; height: 40px" type="text" id="id_message_send_input"/>#}
-                {#                                <button class="button is-danger" type="submit" id="id_message_send_button">#}
-                {#                                    Отправить#}
-                {#                                </button>#}
-                {#                            </div>#}
-                {##}
-                {#                            <script>#}
-                {#                                const chatSocket = new WebSocket("ws://" + window.location.host + "/");#}
-                {#                                chatSocket.onopen = function (e) {#}
-                {#                                    console.log("The connection was setup successfully !");#}
-                {#                                };#}
-                {#                                chatSocket.onclose = function (e) {#}
-                {#                                    console.log("Something unexpected happened !");#}
-                {#                                };#}
-                {#                                document.querySelector("#id_message_send_input").focus();#}
-                {#                                document.querySelector("#id_message_send_input").onkeyup = function (e) {#}
-                {#                                    if (e.keyCode === 13) {#}
-                {#                                        document.querySelector("#id_message_send_button").click();#}
-                {#                                    }#}
-                {#                                };#}
-                {#                                document.querySelector("#id_message_send_button").onclick = function (e) {#}
-                {#                                    let messageInput = document.querySelector(#}
-                {#                                        "#id_message_send_input"#}
-                {#                                    ).value;#}
-                {#                                    chatSocket.send(JSON.stringify({#}
-                {#                                        message: messageInput,#}
-                {#                                        username: "{{request.user.username}}"#}
-                {#                                    }));#}
-                {#                                };#}
-                {#                                chatSocket.onmessage = function (e) {#}
-                {#                                    const data = JSON.parse(e.data);#}
-                {#                                    let div = document.createElement("div");#}
-                {#                                    div.innerHTML = data.username + " : " + data.message;#}
-                {#                                    document.querySelector("#id_message_send_input").value = "";#}
-                {#                                    document.querySelector("#id_chat_item_container").appendChild(div);#}
-                {#                                    div.scrollIntoView({behavior: 'smooth'})#}
-                {#                                };#}
-                {#                            </script>#}
-                {#                        </div>#}
-                {#                    </div>#}
-                {#                </div>#}
-                {#            </div>#}
-                {#            <div class="column">#}
-                {#                <div class="box" style="height: 73vh; overflow: scroll">#}
                 <div class="container">
                     <div class="row clearfix">
                         <div class="col-lg-12">
                             <div class="card chat-app">
-                                <div id="plist" class="people-list">
+                                <div id="plist" class="people-list" style="overflow: scroll">
+
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-search"></i></span>
@@ -76,6 +20,7 @@
                                         <input type="text" class="form-control" placeholder="Поиск..."
                                                style="width: 240px">
                                     </div>
+
                                     <ul class="list-unstyled chat-list mt-2 mb-0">
                                         {% for chat in chats %}
                                             {% for companion in chat.members.all %}
@@ -102,8 +47,10 @@
                                             {% endfor %}
                                         {% endfor %}
                                     </ul>
+
                                 </div>
-                                <div class="chat">
+                                <div class="chat" style="height: 73vh">
+
                                     <div class="chat-header clearfix">
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -114,7 +61,7 @@
                                                 </a>
                                                 <div class="chat-about">
                                                     <h6 class="m-b-0">{{ user.username }}</h6>
-                                                    <small>2 days ago</small>
+                                                    <small>{{ user.last_login }}</small>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 hidden-sm text-right">
@@ -129,12 +76,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="chat-history">
+
+                                    <div class="chat-history" style="height: 53vh; overflow: scroll">
                                         <ul class="m-b-0" id="id_chat_item_container">
                                             {% for message in active_chat.messages.all %}
                                                 <li class="clearfix">
+
                                                     {% if request.user.id == message.author.id %}
-                                                        <div class="message-data float-right">
+                                                        <div class="message-data has-text-right">
                                                     {% else %}
                                                         <div class="message-data">
                                                     {% endif %}
@@ -150,10 +99,10 @@
                                                         <div class="message my-message">
                                                     {% endif %}
                                                     {{ message.content }}
+
                                                     </div>
                                                 </li>
                                             {% endfor %}
-
                                         </ul>
                                     </div>
 
@@ -171,6 +120,7 @@
                                             </button>
                                         </div>
                                     </div>
+
                                     <script>
                                         const chatItems = document.querySelectorAll('.chat-item');
                                         chatItems.forEach((chatItem) => {
@@ -193,6 +143,8 @@
                                         chatSocket.onclose = function (e) {
                                             console.log("Something unexpected happened !");
                                         };
+
+
                                         document.querySelector("#id_message_send_input").focus();
                                         document.querySelector("#id_message_send_input").onkeyup = function (e) {
                                             if (e.keyCode === 13) {
@@ -210,9 +162,10 @@
                                             }));
                                         };
 
+
                                         chatSocket.onmessage = function (e) {
                                             const data = JSON.parse(e.data);
-                                            if (Number({{ active_chat.id }}) !== Number(data.chat_id)){
+                                            if (Number({{ active_chat.id }}) !== Number(data.chat_id)) {
                                                 return
                                             }
 
@@ -220,14 +173,14 @@
                                             let message_data = ''
                                             if (Number({{ request.user.id }}) === Number(data.author_id)) {
                                                 message_data = '<div class="message-data float-right">'
-                                            }else{
+                                            } else {
                                                 message_data = '<div class="message-data">'
                                             }
                                             let message_content = ''
 
                                             if (Number({{ request.user.id }}) === Number(data.author_id)) {
                                                 message_content = '<div class="message other-message float-right">'
-                                            }else{
+                                            } else {
                                                 message_content = '<div class="message my-message">'
                                             }
 
@@ -257,3 +210,66 @@
     </div>
     </div>
 {% endblock %}
+
+
+
+
+
+
+{#                <div class="columns">#}
+{#                    <div class="column">#}
+{#                        <div class="box" style="min-height: 73vh; position: relative">#}
+{#                            {% if request.user.is_authenticated %}#}
+{#                <center> Logout the chat Page <a href="{% url 'logout-user' %}">Logout</a></center>#}
+{#                            {% endif %}#}
+{#                            <div class="chat__item__container"#}
+{#                                 id="id_chat_item_container"#}
+{#                                 style="font-size: 20px; text-align: left; max-height: 45vh; overflow: scroll">#}
+{##}
+{#                            </div>#}
+{#                            <div style="position: absolute; bottom: 10px; margin-top: 5px"#}
+{#                                 class="box has-background-info-light">#}
+{#                                <input style="width: 300px; height: 40px" type="text" id="id_message_send_input"/>#}
+{#                                <button class="button is-danger" type="submit" id="id_message_send_button">#}
+{#                                    Отправить#}
+{#                                </button>#}
+{#                            </div>#}
+{##}
+{#                            <script>#}
+{#                                const chatSocket = new WebSocket("ws://" + window.location.host + "/");#}
+{#                                chatSocket.onopen = function (e) {#}
+{#                                    console.log("The connection was setup successfully !");#}
+{#                                };#}
+{#                                chatSocket.onclose = function (e) {#}
+{#                                    console.log("Something unexpected happened !");#}
+{#                                };#}
+{#                                document.querySelector("#id_message_send_input").focus();#}
+{#                                document.querySelector("#id_message_send_input").onkeyup = function (e) {#}
+{#                                    if (e.keyCode === 13) {#}
+{#                                        document.querySelector("#id_message_send_button").click();#}
+{#                                    }#}
+{#                                };#}
+{#                                document.querySelector("#id_message_send_button").onclick = function (e) {#}
+{#                                    let messageInput = document.querySelector(#}
+{#                                        "#id_message_send_input"#}
+{#                                    ).value;#}
+{#                                    chatSocket.send(JSON.stringify({#}
+{#                                        message: messageInput,#}
+{#                                        username: "{{request.user.username}}"#}
+{#                                    }));#}
+{#                                };#}
+{#                                chatSocket.onmessage = function (e) {#}
+{#                                    const data = JSON.parse(e.data);#}
+{#                                    let div = document.createElement("div");#}
+{#                                    div.innerHTML = data.username + " : " + data.message;#}
+{#                                    document.querySelector("#id_message_send_input").value = "";#}
+{#                                    document.querySelector("#id_chat_item_container").appendChild(div);#}
+{#                                    div.scrollIntoView({behavior: 'smooth'})#}
+{#                                };#}
+{#                            </script>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="column">#}
+{#                <div class="box" style="height: 73vh; overflow: scroll">#}

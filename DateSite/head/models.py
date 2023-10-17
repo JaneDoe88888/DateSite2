@@ -24,6 +24,7 @@ STATUS_CHOICE = [
     ('Не женат(Не замужем)', 'Не женат(Не замужем)')
 ]
 GENDER = [
+    ('---', '---'),
     ('male', 'мужчина'),
     ('female', 'женщина'),
     ('trans', 'трансформер')
@@ -56,14 +57,6 @@ class Match(models.Model):
     user1 = models.ForeignKey(User, related_name='match_user1', on_delete=models.CASCADE)
     user2 = models.ForeignKey(User, related_name='match_user2', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
-
-
-class News(models.Model):
-    image = models.ImageField()
-    text = models.TextField()
-    date = models.DateField(auto_now_add=True)
-    comments = models.CharField(max_length=255)
-    likes = models.ManyToManyField(User, related_name='liked_news')
 
 
 

@@ -1,0 +1,83 @@
+{% extends 'base_layout.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="box has-background-warning-light" style="height: 86vh; overflow: scroll">
+        <div class="columns is-vcentered is-multiline">
+            <div class="column">
+                {% csrf_token %}
+                {% if form.is_valid %}
+                    <div class="title has-text-centered" style="font-family: 'Comic Sans MS'; margin-top: 10px">
+                        Результаты поиска
+                    </div>
+                {% endif %}
+                <style>
+                    .grid-container {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                        grid-gap: 5px;
+                    }
+
+                    .user-card {
+                        background-color: lightsalmon;
+                        margin: 20px;
+                        border-radius: 5px;
+                        box-shadow: 2px 2px 2px 3px rgba(0, 0, 0, 0.1);
+                        height: 400px;
+                    }
+
+                    .user-card h3 {
+                        margin-top: 0;
+                    }
+
+                    .box {
+                        padding: 3px;
+                        margin-right: 5px;
+                        margin-left: 5px;
+                    }
+
+                    img {
+                        border-radius: 5px;
+                    }
+
+                    .buttons {
+                        margin-left: 10px;
+                        padding: 3px;
+                    }
+
+                    .button {
+                        padding-bottom: 3px;
+                    }
+
+                </style>
+                <div class="grid-container">
+                    {% for profile in profiles %}
+                        <div class="user-card">
+                            <h3 class="subtitle has-text-centered"
+                                style="color: black;">{{ foundling.user.username }}</h3>
+                            <div class="box ">
+                                <figure class="image is-128x128">
+                                    <a href="{% url 'head:profile' profile.user.pk %}">
+                                        <img class="" src="{{ profile.image.url }}">
+                                    </a>
+                                </figure>
+                            </div>
+
+                            <p class="has-text-centered" style="color: black">Lorem ipsum dolor sit amet.</p>
+                            <br>
+
+                            <div class="buttons">
+                                <a href="{% url 'head:search' %}" class="button is-small is-danger" id="1">
+                                    <ion-icon name="add-outline"></ion-icon>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

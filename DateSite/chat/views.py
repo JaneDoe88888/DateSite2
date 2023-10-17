@@ -12,7 +12,6 @@ def chat_page(request, *args, **kwargs):
 
 def get_chats(request):
     chats = Chat.objects.filter(members__in=[request.user.id])
-    print(chats)
     context = {'chats': chats}
     return render(request, 'chat/chat.html', context)
 
@@ -20,7 +19,6 @@ def get_chats(request):
 def get_chat(request, chat_id):
     chats = Chat.objects.filter(members__in=[request.user.id])
     chat = Chat.objects.get(id=chat_id)
-    print(chat)
     context = {'active_chat': chat, 'chats': chats}
     return render(request, 'chat/chat.html', context)
 

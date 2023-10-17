@@ -3,19 +3,13 @@
 
 
 {% block content %}
-    <div class="box has-background-warning-light" style="height: 88vh; overflow: scroll">
+    <div class="box has-background-warning-light" style="height: 86vh; overflow: scroll">
         <div class="columns is-vcentered is-multiline">
-            <div class="column is-5">
-                <div class="box" style="box-shadow: 0 0 5px 5px lightpink">
-                    <img src="{% static 'static/avatar.png' %}" alt="">
-                    <button class="button is-danger is-fullwidth">
-                        <a href="" style="color: white">Изменить фотографию</a>
-                        <ion-icon name="camera-outline"></ion-icon>
-                    </button>
+            <div class="column is-6" style="margin-left: 15px; margin-bottom: 1px; padding: 2px">
+                <div class="title" style="font-size: 70px; font-family: 'Academy Engraved LET'; color: lightsalmon">Мой
+                    профиль
                 </div>
-            </div>
-            <div class="column is-6">
-                <div class="box" style="box-shadow: 0 0 5px 5px lightpink">
+                <div class="box" style="box-shadow: 0 0 5px 5px #fcd4dc">
                     <ul>
                         <li class="title">{{ account.username }}</li>
                         <li class="subtitle">
@@ -29,7 +23,8 @@
                     </ul>
                     <hr>
                     <button class="button is-danger has-text-centered">
-                        <a href="{% url 'head:edit_profile'  %}?action=edit_profile" style="color: white">Редактировать</a>
+                        <a href="{% url 'head:edit_profile' %}?action=edit_profile"
+                           style="color: white">Редактировать</a>
                         <ion-icon name="create-outline"></ion-icon>
                     </button>
                     <div class="modal {% if confirm_edit %} is-active {% endif %}">
@@ -79,10 +74,18 @@
                         </div>
                     </div>
                 </div>
-
+            </div>
+            <div class="column is-5" style="margin-left: 70px; padding: 1px">
+                <div class="box" style="box-shadow: 0 0 5px 5px #fcd4dc">
+                    <img src="{% static 'static/avatar.png' %}" alt="">
+                    <button class="button is-danger is-fullwidth">
+                        <a href="" style="color: white">Изменить фотографию</a>
+                        <ion-icon name="camera-outline"></ion-icon>
+                    </button>
+                </div>
             </div>
             <div class="column is-12">
-                <div class="box" style="box-shadow: 0 0 5px 5px lightpink">
+                <div class="box" style="box-shadow: 0 0 5px 5px #fcd4dc">
                     <div class="title">
                         About me
                     </div>
@@ -113,9 +116,13 @@
                 </div>
             </div>
             <div class="column is-12">
-                <div class="box" style="box-shadow: 0 0 5px 5px lightpink">
+                <div class="box" style="box-shadow: 0 0 5px 5px #fcd4dc">
                     <div class="title">
-                        Photos
+                        Мои фотографии
+                        <button class="button is-danger">
+                            <a href="{% url 'head:photo' %}" style="color: white">Редактировать</a>
+                            <ion-icon name="camera-outline"></ion-icon>
+                        </button>
                     </div>
                     <div class="image">
                         <div class="table">
@@ -131,10 +138,6 @@
                             <div class="box">
                                 <img src="{% static 'uploads/photo_2023-09-04_21.21.43.jpeg' %}" alt="">
                             </div>
-                            <button class="button is-danger">
-                                <a href="{% url 'head:photo' %}" style="color: white">Редактировать</a>
-                                <ion-icon name="camera-outline"></ion-icon>
-                            </button>
                         </div>
                     </div>
                 </div>

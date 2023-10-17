@@ -66,8 +66,9 @@
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
-                    <div class="button is-warning" style="margin: 3px">
-                        <a href="{% url 'users:sign_up' %}" style="color: coral">Создать аккаунт</a>
+                    <div class="button is-warning"
+                         style="margin: 3px; border: #4a4a4a; box-shadow: 0 0 5px 5px #fff3d1">
+                        <a href="{% url 'users:sign_up' %}" style="color: #7a7a7a">Создать аккаунт</a>
                     </div>
                 </div>
             </div>
@@ -84,11 +85,23 @@
              style="text-align: center; font-family: 'Brush Script MT'; color: lightgoldenrodyellow; font-size: 80px; padding: 1px">
             <p>"Любовь и точка!"</p>
         </div>
-        {#            <button class="button">#}
-        {#                <a href="{% url 'users:sign_up' %}">Создать аккаунт</a>#}
-        {#            </button>#}
-        <div class="enter has-text-centered" style="margin-top: 40px; padding: 5px">
-            <a href="{% url 'head:home' %}?action=log_in" class="button is-danger is-large">Войти в аккаунт</a>
+
+        <div class="enter has-text-centered"
+             style="margin-top: 40px; padding: 5px; border-radius: 15%">
+            <button class="button is-danger"
+                    style="box-shadow: 0 0 10px 10px #fabdc9; width: 270px; height: 60px">
+
+                <a href="{% url 'head:home' %}?action=log_in"
+                   style="color: white; font-size: 22px">
+                    Войти в аккаунт
+                </a>
+
+            </button>
+            {#            <a href="{% url 'head:home' %}?action=log_in"#}
+            {#               class="button is-danger is-large"#}
+            {#               style="box-shadow: 0 0 10px 10px #fabdc9">#}
+            {#                Войти в аккаунт#}
+            {#            </a>#}
         </div>
 
         <div class="modal {% if confirm_login %} is-active {% endif %}">
@@ -98,7 +111,7 @@
                 <div class="columns is-centered mt-3">
                     <div class="column is-6">
                         <div class="box has-background"
-                             style="background-color: lavenderblush; box-shadow: 0 0 5px 5px lightpink">
+                             style="background-color: lavenderblush; box-shadow: 0 0 5px 5px #fabdc9">
                             <form method="post">
                                 <div class="has-text-right">
                                     <a href="{% url 'head:home' %}">

@@ -35,14 +35,6 @@ class EditProfileForm(BulmaMixin, forms.ModelForm):
         ]
 
 
-# class PhotoProfile(forms.ModelForm):
-#     image = forms.ImageField(label='Загрузите фотографию')
-#
-#     class Meta:
-#         model = PhotoProfile
-#         fields = ['image']
-
-
 class SearchForm(BulmaMixin, forms.ModelForm):
     gender = forms.ChoiceField(label='Выберите пол', choices=GENDER)
     age_min = forms.IntegerField(label='Минимальный возраст')
@@ -57,3 +49,7 @@ class SearchForm(BulmaMixin, forms.ModelForm):
             'age_max',
             'city',
         ]
+
+
+
+
