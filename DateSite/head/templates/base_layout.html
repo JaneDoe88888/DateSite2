@@ -22,7 +22,7 @@
                     <img id="avatar" style="margin-top: 1px"
                          src="{{ account.image.url }}"
                          alt="profile_picture">
-                    <div class="title" style="color: lightgoldenrodyellow;">{{ user.username }}</div>
+                    <div class="title" style="color: lightgoldenrodyellow;">{% if account.user_name %} {{ account.user_name }} {% else %} {{ account }} {% endif %}</div>
                     <div class="subtitle" style="color: lightgoldenrodyellow">Designer</div>
                 </div>
                 <ul>
@@ -51,9 +51,15 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{% url 'head:friends' %}">
+                        <a href="{% url 'head:friends' user.pk %}">
                             <ion-icon name="people-outline"></ion-icon>
                             <span class="item">Друзья</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'head:my_requests' user.pk %}">
+                            <ion-icon name="people-outline"></ion-icon>
+                            <span class="item">Мои заявки</span>
                         </a>
                     </li>
                     <li>

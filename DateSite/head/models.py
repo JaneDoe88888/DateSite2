@@ -10,12 +10,14 @@ class SliderImage(models.Model):
 
 
 GENDER = [
-    ('men', 'men'),
-    ('female', 'female'),
-    ('trans', 'трансформер')
+    ('', ''),
+    ('мужчина', 'мужчина'),
+    ('женщина', 'женщина'),
+    ('трансформер', 'trans')
 ]
 
 STATUS_CHOICE = [
+    ('', '---'),
     ('В активном поиске', 'В активном поиске'),
     ('Влюблен(а)', 'Влюблен(а)'),
     ('Встречается', 'Встречается'),
@@ -26,35 +28,18 @@ STATUS_CHOICE = [
     ('Не женат(Не замужем)', 'Не женат(Не замужем)')
 ]
 
-# class User(models.Model):
-#     username = models.CharField(max_length=255)
-#     birthday = models.DateTimeField()
-#     email = models.EmailField()
-#     password = models.CharField(max_length=255)
-#     gender = models.CharField(max_length=255, choices=GENDER_CHOICE)
 
 class Profile(models.Model):
+    user_name = models.CharField(max_length=255, null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    image = models.ImageField(default='default-profile-photo.png', blank=True)
-    first_name = models.CharField(max_length=255, null=True, blank=True)
-    last_name = models.CharField(max_length=255, null=True, blank=True)
     birthday = models.IntegerField(blank=True, null=True)
+    biography = models.TextField(max_length=255, null=True, blank=True)
     city = models.CharField(max_length=255, null=True, blank=True)
-    about = models.TextField(null=True, blank=True)
     job = models.CharField(max_length=255, null=True, blank=True)
     hobbies = models.CharField(max_length=255, null=True, blank=True)
+    image = models.ImageField(default='default-profile-photo.png', blank=True)
+    status = models.CharField(max_length=255, choices=STATUS_CHOICE, blank=True)
     gender = models.CharField(max_length=255, choices=GENDER, blank=True)
-    friends = models.ManyToManyField('self', blank=True)
 
     def __str__(self):
         return self.user.username
-
-
-# class Profile(models.Model):
-#     first_name = models.CharField(max_length=255)
-#     last_name = models.CharField(max_length=255)
-#     city = models.CharField(max_length=255)
-#     about = models.TextField()
-#     job = models.CharField(max_length=255)
-#     hobbies = models.CharField(max_length=255)
-#     image = models.ImageField()

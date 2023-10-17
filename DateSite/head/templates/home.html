@@ -64,7 +64,6 @@
             </div>
 
             <div class="navbar-end">
-                {#                {% if not user.is_authenticated %}#}
                 <div class="navbar-item">
                     <div class="buttons">
                         <div class="button is-warning" style="margin: 3px">
@@ -72,22 +71,10 @@
                         </div>
                     </div>
                 </div>
-                {#                {% endif %}#}
             </div>
         </div>
     </nav>
 
-<!-- {% block slider %}
-<div class="container-slide">
-    <div id="carousel-demo" class="carousel">
-        {% for slide in slides %}
-        <div class="item-1">
-            <img src="{{ slide.image.url }}" alt="" class="slide-img">
-        </div>
-        {% endfor %}
-    </div>
-</div>
-{% endblock %} -->
 
 
 <section class="section">
@@ -99,9 +86,6 @@
         <div class="subtitle" style="text-align: center; font-family: 'Brush Script MT'; color: lightgoldenrodyellow; font-size: 80px; padding: 1px">
             <p>"Любовь и точка!"</p>
         </div>
-        {#            <button class="button">#}
-        {#                <a href="{% url 'users:sign_up' %}">Создать аккаунт</a>#}
-        {#            </button>#}
         <div class="enter has-text-centered" style="margin-top: 40px; padding: 5px">
             <a href="{% url 'head:home' %}?action=log_in" class="button is-danger is-large">Войти в аккаунт</a>
         </div>

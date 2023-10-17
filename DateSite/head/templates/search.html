@@ -5,18 +5,41 @@
 {% block content %}
     <div class="box has-background-warning-light" style="height: 88vh; overflow: scroll">
         <div class="title has-text-centered" style="font-family: 'Comic Sans MS'">Найди своего человека</div>
-        <div class="box" style="width: 80vh; text-align: center">
-            <form action="" method="post">
-                {% csrf_token %}
-                {{ form }}
-                <button type="submit" value="Поиск" style="color: white; background-color: lightsalmon">Поиск</button>
-            </form>
+        <div class="columns is-centered mt-3">
+            <div class="column is-6">
+                <div class="box" style="width: 80vh; text-align: center">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {% for field in form %}
+                            <div class="field">
+                                <label for="{{ field.id_for_label }}" class="label">
+                                    {{ field.label }}
+                                </label>
+                                <div class="control">
+                                    {{ field }}
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        {% if form.errors %}
+                            <ul>
+                                {% for error in form.errors.values %}
+                                    <li class="has-text-danger">{{ error }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                        <button class="button" type="submit" value="Поиск" style="color: white; background-color: lightsalmon">Поиск</button>
+                    </form>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="box has-background-warning-light" style="height: 88vh; overflow: scroll">
+    
         <div class="columns is-vcentered is-multiline">
             <div class="column">
-                <div class="title has-text-centered" style="font-family: 'Comic Sans MS'; margin-top: 10px">Результат</div>
+                {% csrf_token %}
+                {% if form.is_valid %}
+                <div class="title has-text-centered" style="font-family: 'Comic Sans MS'; margin-top: 10px">Результаты поиска</div>
+                {% endif %}
                 <style>
                     .grid-container {
                         display: grid;
@@ -55,12 +78,14 @@
 
                 </style>
                 <div class="grid-container">
-                    {% for foundling in users %}
+                    {% for profile in profiles %}
                     <div class="user-card">
-                        <h3 class="subtitle has-text-centered" style="color: black">{{foundling.username}}</h3>
+                        <div class="subtitle has-text-centered" style="color: black;">{{profile.user.username}}</div>
                         <div class="box ">
                             <figure class="image is-128x128">
-                                <img class="placeholder" src="{{ foundling.image.url }}">
+                                <a href="{% url 'head:profile' profile.user.pk %}">
+                                    <img class="" src="{{ profile.image.url }}">
+                                </a>
                             </figure>
                         </div>
 
@@ -68,18 +93,9 @@
                         <br>
 
                         <div class="buttons">
-                            <div class="button is-small is-danger" id="1">
-                                <ion-icon name="mail-open-outline"></ion-icon>
-                            </div>
-                            <div class="button is-small is-danger">
-                                <ion-icon name="bookmarks-outline"></ion-icon>
-                            </div>
-                            <div class="button is-small is-danger">
-                                <ion-icon name="trash-outline"></ion-icon>
-                            </div>
-                            <div class="button is-small is-danger">
-                                <ion-icon name="lock-closed-outline"></ion-icon>
-                            </div>
+                            <a href="{% url 'head:search' %}" class="button is-small is-danger" id="1">
+                                <ion-icon name="add-outline"></ion-icon>
+                            </a>
                         </div>
                     </div>
                     {% endfor %}

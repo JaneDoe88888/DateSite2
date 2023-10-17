@@ -45,9 +45,9 @@
 
                 </style>
                 <div class="grid-container">
-                    {% for friend in friends %}
+                    {% for fr in account.my_friends %}
                     <div class="user-card">
-                        <h3 class="subtitle has-text-centered" style="color: white">Name LastName</h3>
+                        <h3 class="subtitle has-text-centered" style="color: white">{{ fr.username }}</h3>
                         <div class="box">
                             <figure class="image-1">
                                 <img class="placeholder" src="{% static 'uploads/photo_2023-09-04 21.22.03.jpeg' %}">

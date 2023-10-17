@@ -112,7 +112,7 @@ nav img {
 }
 .profile-image {
     height: 42vh;
-    width: 22vw;
+    /* width: 21vw; */
 }
 .profile-image img {
     width: 100%;

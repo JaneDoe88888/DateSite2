@@ -14,27 +14,27 @@ class SignInForm(BulmaMixin, AuthenticationForm):
         model = User
         fields = ['username', 'password']
 
-class PhotoProfile(forms.ModelForm):
+class PhotoProfileForm(forms.ModelForm):
     image = forms.ImageField(label='Загрузите фотографию')
 
     class Meta:
         model = Profile
         fields = ['image',]
 
-class AboutMeProfile(forms.ModelForm, BulmaMixin):
-    about = forms.CharField(widget=forms.Textarea(attrs={
+class AboutMeProfileForm(forms.ModelForm, BulmaMixin):
+    biography = forms.CharField(widget=forms.Textarea(attrs={
         'class': 'textarea'
     }), label='Расскажите о себе', required=False)
 
     class Meta:
         model = Profile
-        fields = ['about',]
+        fields = ['biography',]
 
 class SearchForm(BulmaMixin, forms.ModelForm):
     gender = forms.ChoiceField(label='Выберите пол', choices=GENDER)
-    age_min = forms.IntegerField(label='Минимальный возраст')
-    age_max = forms.IntegerField(label='Максимальный возраст')
-    city = forms.CharField(label='Введите город', max_length=255)
+    age_min = forms.IntegerField(label='Минимальный возраст', required=False)
+    age_max = forms.IntegerField(label='Максимальный возраст', required=False)
+    city = forms.CharField(label='Введите город', max_length=255, required=False)
 
     class Meta:
         model = Profile
@@ -46,18 +46,22 @@ class SearchForm(BulmaMixin, forms.ModelForm):
         ]
 
 class EditProfileForm(BulmaMixin, forms.ModelForm):
-    gender = forms.ChoiceField(label='Выберите пол', choices=GENDER)
+    user_name = forms.CharField(label='Введите имя', required=False)
     birthday = forms.IntegerField(label='Ваш возраст', validators=[MinValueValidator(limit_value=18)], required=False)
     city = forms.CharField(label='Ваш город', required=False)
     job = forms.CharField(label='Ваша работа', required=False)
     hobbies = forms.CharField(label='Ваше хобби', required=False)
+    status = forms.ChoiceField(label='Ваше семейное положение', choices=STATUS_CHOICE, required=False)
+    gender = forms.ChoiceField(label='Выберите пол', choices=GENDER, required=False)
 
     class Meta:
         model = Profile
         fields = [
+            'user_name',
             'birthday',
             'city',
             'job',
             'hobbies',
+            'status',
             'gender'
         ]

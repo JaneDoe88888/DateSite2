@@ -13,19 +13,21 @@
                         <figure class="image profile-image">
                             <img src="{{ account.image.url }}" alt="">
                         </figure>
-
+                        {% if account.user == request.user %}
                         <a href="{% url 'head:edit_photo' %}?action=photo" style="color: white;"
                             class="button is-danger is-fullwidth">
                             <div class="">Изменить фотографию</div>
                             <ion-icon name="camera-outline"></ion-icon>
                         </a>
                         {% if account.image != 'default-profile-photo.png' %}
-                        <a href="{% url 'head:profile' account.pk %}?action=delete" style="color: white;"
+                        <a href="{% url 'head:edit_photo' %}?action=delete" style="color: white;"
                             class="button is-primary is-fullwidth">
                             <div class="">Удалить фотографию</div>
                         </a>
                         {% endif %}
+                        {% endif %}
                     </div>
+                    
                     <div class="modal {% if confirm_photo %} is-active {% endif %}">
                         <div class="modal-background"></div>
                         <div class="modal-content">
@@ -35,7 +37,7 @@
                                         style="background-color: lavenderblush; box-shadow: 0 0 5px 5px lightpink">
                                         <form action="" method="post" enctype="multipart/form-data">
                                             <div class="has-text-right">
-                                                <a href="{% url 'head:profile' account.pk %}">
+                                                <a href="{% url 'head:profile' user.pk %}">
                                                     <ion-icon class="is-size-3" name="close-outline"></ion-icon>
                                                 </a>
                                             </div>
@@ -71,25 +73,28 @@
                             </div>
                         </div>
                     </div>
+                    
                 </div>
                 <div class="column is-6">
                     <div class="box" style="box-shadow: 0 0 5px 5px lightpink">
                         <ul>
-                            <li class="title">{{ account.username }}</li>
+                            <li class="title">{% if account.user_name %} {{ account.user_name }} {% else %} {{ account }} {% endif %}</li>
                             <li class="subtitle">
-                                Status of the day
+                                {{account.status}}
                             </li>
-                            <li>Возраст - {{ account.birthday }}</li>
-                            <li>Город - {{ account.city }}</li>
-                            <li>Карьера - {{ account.job }}</li>
-                            <li>Увлечения - {{ account.hobbies }}</li>
-                            <li>Семейное положение - {{ account.status }}</li>
+                            <li>Возраст - {% if account.birthday %} {{ account.birthday }} {% else %} не указан {% endif %}</li>
+                            <li>Город - {% if account.city %} {{ account.city }} {% else %} не указан {% endif %}</li>
+                            <li>Карьера - {% if account.job %} {{ account.job }} {% else %} не указана {% endif %}</li>
+                            <li>Увлечения - {% if account.hobbies %} {{ account.hobbies }} {% else %} не указаны {% endif %}</li>
+                            <li>Пол - {% if account.gender %} {{ account.gender }} {% else %} не указан {% endif %}</li>
                         </ul>
                         <hr>
+                        {% if account.user == request.user %}
                         <button class="button is-danger has-text-centered">
                             <a href="{% url 'head:edit_profile'  %}?action=edit_profile" style="color: white">Редактировать</a>
                             <ion-icon name="create-outline"></ion-icon>
                         </button>
+                        {% endif %}
                         <div class="modal {% if confirm_edit %} is-active {% endif %}">
                             <div class="modal-background"></div>
                             <div class="modal-content">
@@ -98,7 +103,7 @@
                                         <div class="box">
                                             <form action="" method="post">
                                                 <div class="has-text-right">
-                                                    <a href="{% url 'head:profile' account.pk %}">
+                                                    <a href="{% url 'head:profile' user.pk %}">
                                                         <ion-icon class="is-size-3" name="close-outline"></ion-icon>
                                                     </a>
                                                 </div>
@@ -141,22 +146,30 @@
                 <div class="column is-12">
                     <div class="box" style="box-shadow: 0 0 5px 5px lightpink">
                         <div class="title">
-                            About me
+                            О себе
                         </div>
                         <hr>
-                        {% if account.about %}
+                        {% if account.biography %}
                         <div class="subtitle">
-                            {{ account.about }}
+                            {{ account.biography }}
                         </div>
                         {% else %}
+                        {% if account.user == request.user %}
                         <div class="subtitle has-text-grey">
                             Оставьте информацию о себе
                         </div>
+                        {% else %}
+                        <div class="subtitle has-text-grey">
+                            {% if account.user_name %} {{ account.user_name }} {% else %} {{ account }} {% endif %} еще не оставил информацию о себе
+                        </div>
                         {% endif %}
+                        {% endif %}
+                        {% if account.user == request.user %}
                         <button class="button is-danger has-text-centered">
                             <a href="{% url 'head:edit_about' %}?action=about_me" style="color: white">Редактировать</a>
                             <ion-icon name="create-outline"></ion-icon>
                         </button>
+                        {% endif %}
                         <div class="modal {% if confirm_about %} is-active {% endif %}">
                             <div class="modal-background"></div>
                             <div class="modal-content">
