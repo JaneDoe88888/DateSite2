@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth import login, logout
-from .forms import SignInForm, EditProfileForm, PhotoUploadForm
+from .forms import SignInForm, EditProfileForm
 
 
 def home(request):
@@ -48,9 +48,6 @@ def favorite(request):
 
 
 
-def settings(request):
-    return render(request, 'settings.html', {})
-
 
 def search(request):
     return render(request, 'search.html', {})
@@ -79,17 +76,17 @@ def edit_profile(request):
     if form.is_valid():
         form.save()
         return redirect('head:profile', pk=account.pk)
-    return render(request, 'profile.html', {'form': form, 'confirm_edit': confirm_edit, 'account': profile_data})
+    return render(request, 'edit_profile.html', {'form': form, 'confirm_edit': confirm_edit, 'account': profile_data})
 
 
 def photo(request):
-    if request.method == 'POST':
-        form = PhotoUploadForm(request.POST or None, request.FILES or None)
-        if form.is_valid():
-            my_photos = request.FILES.getlist('фотографии')
-            for photos in my_photos:
-                photos.save()
-        return render(request, 'photo.html')
-    else:
-        form = PhotoUploadForm(request.POST or None)
-        return render(request, 'photo.html', {'form': form})
+    # if request.method == 'POST':
+    #     form = PhotoUploadForm(request.POST or None, request.FILES or None)
+    #     if form.is_valid():
+    #         my_photos = request.FILES.getlist('фотографии')
+    #         for photos in my_photos:
+    #             photos.save()
+    #     return render(request, 'photo.html')
+    # else:
+    #     form = PhotoUploadForm(request.POST or None){'form': form}
+    return render(request, 'photo.html', {})

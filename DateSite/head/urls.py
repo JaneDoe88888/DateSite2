@@ -10,7 +10,7 @@ urlpatterns = [
     path('friends/', views.friends, name='friends'),
     path('favorite/', views.favorite, name='favorite'),
     path('photo/', views.photo, name='photo'),
-    path('settings/', views.settings, name='settings'),
+
     path('search/', views.search, name='search'),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
 

@@ -59,7 +59,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{% url 'head:settings' %}">
+                        <a href="{% url 'head:edit_profile' %}">
                             <ion-icon name="settings-outline"></ion-icon>
                             <span class="item">Настройки</span>
                         </a>
@@ -95,98 +95,50 @@
             </div>
         </div>
 
-        <div></div>
+
         <div class="box has-background-warning-light" style="height: 89vh; overflow: scroll">
-               <div class="has-text-centered title ">Настройки</div>
+            <div class="has-text-centered title ">Настройки</div>
+                <div class="columns">
+                    <div class="column">
+                        <div class="box">
+                            <form action="" method="post">
 
-            <div class="box" style="margin-top: 5%; margin-left: 5%; width: 70%">
-                <h1 class="title " style="color: #0a0a0a">Личные данные</h1>
-                <hr>
-                <ul>
-                    <label class="is-flex is-justify-content-space-between"  style="color: #0a0a0a">
-                        возраст  {{ account.birthday }}
-                    </label>
-                        <input class="input" type="text" placeholder="Text input">
+                                <div class="title is-2 has-text-centered"
+                                     style="font-family: 'Comic Sans MS'">
+                                    Редактирование профиля
+                                </div>
+                                {% csrf_token %}
+                                {% for field in form %}
+                                    <div class="field">
+                                        <label for="{{ field.id_for_label }}" class="label">
+                                            {{ field.label }}
+                                        </label>
+                                        <div class="control">
+                                            {{ field }}
+                                        </div>
+                                    </div>
+                                {% endfor %}
 
-                    <sub>изменение возраста</sub>
-
-                    <hr>
-
-                    <label class="is-flex is-justify-content-space-between" style="color: #0a0a0a">
-                        город
-
-                    </label>
-                    <input class="input" type="text" placeholder="Text input">
-                    <sub >изменение города</sub>
-                    <hr>
-
-
-                    <label class="is-flex is-justify-content-space-between" style="color: #0a0a0a">
-                        карьера
-                    </label>
-                    <input class="input" type="text" placeholder="Text input">
-                    <sub >изменение карьеры</sub>
-                    <hr>
-                    <label class="is-flex is-justify-content-space-between" style="color: #0a0a0a">
-                        увлечение
-                    </label>
-                    <input class="input" type="text" placeholder="Text input">
-                    <sub >изменение увлечений</sub>
-
-
-                </ul>
+                                {% if form.errors %}
+                                    <ul>
+                                        {% for error in form.errors.values %}
+                                            <li class="has-text-danger">{{ error }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                                <div class="has-text-centered">
+                                    <button class="button is-danger is-fullwidth">
+                                        Редактировать
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
-
-               <div class="box" style="margin-top: 5%; margin-left: 5%; width: 70%">
-                <h1 class="title " style="color: #0a0a0a">Уведомления на сайте</h1>
-                <hr>
-                <ul>
-                    <li class="is-flex is-justify-content-space-between"  style="color: #0a0a0a">
-                        лайки
-                        <input class="checkbox" type="checkbox">
-                    </li>
-                    <sub>Покажем публикации, которые могут вас заинтересовать</sub>
-
-                    <hr>
-
-                    <li class="is-flex is-justify-content-space-between" style="color: #0a0a0a">
-                        дизлайки
-                        <input class="checkbox" type="checkbox">
-                    </li>
-
-                    <sub >Покажем публикации, которые могут вас заинтересовать</sub>
-                </ul>
-            </div>
-               <div class="box" style="margin-top: 5%; margin-left: 5%; width: 70%">
-                <h1 class="title" style="color: #0a0a0a">Сообщения</h1>
-                <hr>
-                <ul>
-                    <li class="is-flex is-justify-content-space-between" style="color: #0a0a0a">
-                        личные сообщения
-                        <input class="checkbox" type="checkbox">
-                    </li>
-
-                    <sub>Уведомление о том, что вас упомянули в чате</sub>
-                    <hr>
-
-                    <li class="is-flex is-justify-content-space-between" style="color: #0a0a0a">
-                        напоминание о сообщениях
-                        <input class="checkbox" type="checkbox">
-                    </li>
-
-                    <sub>Уведомление о том, что у вас есть непрочитанные сообщения или упоминания в чатах</sub>
-                </ul>
-            </div>
-
-            <div class="" style="margin-top: 40px; padding: 5px;">
-                <a href="" class="button is-danger is-centered">
-                    Сохранить настройки
-                </a>
-              </div>
-            </div>
-
-
         </div>
+
+
     </div>
 </div>
 
