@@ -38,12 +38,12 @@ class EditProfileForm(BulmaMixin, forms.ModelForm):
         ]
 
 
-class UploadForm(forms.ModelForm):
-    image = forms.ImageField()
-
-    class Meta:
-        model = Image
-        fields = ['image', ]
+# class UploadForm(forms.ModelForm):
+#     image = forms.ImageField()
+#
+#     class Meta:
+#         model = Image
+#         fields = ['image', ]
 
 
 class SearchForm(BulmaMixin, forms.ModelForm):
@@ -60,3 +60,11 @@ class SearchForm(BulmaMixin, forms.ModelForm):
             'age_max',
             'city',
         ]
+
+
+class PhotoUploadForm(BulmaMixin, forms.ModelForm):
+    photos = forms.FileField(widget=forms.FileInput )
+
+    class Meta:
+        model = Image
+        fields = ['photos']

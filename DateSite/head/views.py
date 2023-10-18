@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import *
 from django.contrib.auth import login, logout
-from .forms import SignInForm, UploadForm
+from .forms import SignInForm, EditProfileForm, PhotoUploadForm
 
 
 def home(request):
@@ -37,14 +37,15 @@ def favorite(request):
     return render(request, 'favorite.html')
 
 
-def photo(request):
-    form = UploadForm(request.POST or None, request.FILES or None)
-    if form.is_valid():
+# def photo(request):
+#     form = UploadForm(request.POST or None, request.FILES or None)
+#     if form.is_valid():
+#
+#         profile_data = Profile.objects.get(pk=request.POST.get('pk'))
+#         print(request.POST)
+#
+#     return render(request, 'photo.html', {'form': form})
 
-        profile_data = Profile.objects.get(pk=request.POST.get('pk'))
-        print(request.POST)
-
-    return render(request, 'photo.html', {'form': form})
 
 
 def settings(request):
@@ -64,3 +65,31 @@ def sign_out(request):
 #     profile_data = Profile.objects.get(pk=pk)
 #     print(request.POST)
 #     return  redirect('head:profile')
+#
+
+def edit_profile(request):
+    account = Profile.objects.get(user__username=request.user.username)
+    action = request.GET.get('action')
+    confirm_edit = False
+    profile_data = Profile.objects.get(user__username=request.user.username)
+    form = EditProfileForm(data=request.POST or None, instance=profile_data)
+
+    if action == 'edit_profile':
+        confirm_edit = True
+    if form.is_valid():
+        form.save()
+        return redirect('head:profile', pk=account.pk)
+    return render(request, 'profile.html', {'form': form, 'confirm_edit': confirm_edit, 'account': profile_data})
+
+
+def photo(request):
+    if request.method == 'POST':
+        form = PhotoUploadForm(request.POST or None, request.FILES or None)
+        if form.is_valid():
+            my_photos = request.FILES.getlist('фотографии')
+            for photos in my_photos:
+                photos.save()
+        return render(request, 'photo.html')
+    else:
+        form = PhotoUploadForm(request.POST or None)
+        return render(request, 'photo.html', {'form': form})

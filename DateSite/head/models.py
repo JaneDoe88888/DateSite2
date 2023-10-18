@@ -40,6 +40,7 @@ GENDER = [
 
 class Profile(models.Model):
     username = models.CharField(max_length=255)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     birthday = models.DateTimeField()
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
@@ -54,3 +55,7 @@ class Profile(models.Model):
 
 class Image(models.Model):
     image = models.ImageField()
+
+
+class UploadPhotos(models.Model):
+    photos = models.ImageField()

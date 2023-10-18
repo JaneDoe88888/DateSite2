@@ -12,6 +12,8 @@ urlpatterns = [
     path('photo/', views.photo, name='photo'),
     path('settings/', views.settings, name='settings'),
     path('search/', views.search, name='search'),
+    path('edit_profile/', views.edit_profile, name='edit_profile'),
+
 ]
 
 
